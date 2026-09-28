@@ -531,17 +531,17 @@ body.nav-open {
 .ds-mega-menu-parent.ds-mega-open .ds-mega-menu-caret { transform: rotate(180deg); }
 .ds-mega-menu {
     display: none; position: absolute; top: 100%; left: 50%; padding-top: 20px;
-    transform: translateX(-50%); width: max-content; max-width: 90vw;
+    transform: translateX(-50%); width: 960px; max-width: calc(100vw - 32px);
     z-index: 200;
 }
 .ds-mega-menu-parent.ds-mega-open .ds-mega-menu { display: block; }
 .ds-mega-menu-inner {
-    display: flex; gap: 40px;
+    display: flex; flex-wrap: wrap; gap: 28px 32px;
     background: #fff; border-radius: var(--ds-radius-lg); box-shadow: var(--ds-shadow-lg);
-    padding: 28px;
+    padding: 28px; width: 100%; box-sizing: border-box;
 }
 .ds-mega-menu-image {
-    position: relative; flex: 0 0 220px; height: 260px; border-radius: var(--ds-radius-md);
+    position: relative; flex: 0 0 200px; width: 200px; height: 260px; border-radius: var(--ds-radius-md);
     background-size: cover; background-position: center; overflow: hidden;
 }
 .ds-mega-menu-image-overlay {
@@ -559,7 +559,7 @@ body.nav-open {
     padding-bottom: 3px;
 }
 .ds-mega-menu-cta:hover { color: var(--ds-color-gold); border-color: var(--ds-color-gold); }
-.ds-mega-menu-col { flex: 0 0 auto; width: 150px; }
+.ds-mega-menu-col { flex: 1 1 130px; min-width: 130px; max-width: 200px; }
 .ds-mega-menu-col-title {
     display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
     color: var(--ds-color-primary); margin-bottom: 12px;
