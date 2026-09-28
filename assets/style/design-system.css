@@ -1083,6 +1083,147 @@ header .main-navbar .nav-menu > li > a::after,
 }
 .ds-search-input:focus { outline: none; }
 
+/* ── Custom styled dropdown (replaces native <select> for cross-browser design control) ── */
+.ds-custom-select {
+    position: relative;
+}
+.ds-custom-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: var(--ds-font-sans);
+    font-size: var(--ds-fs-sm);
+    font-weight: 500;
+    color: var(--ds-text-primary);
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+}
+.ds-custom-select-trigger span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ds-custom-select-caret {
+    font-size: 11px;
+    color: var(--ds-text-muted);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+.ds-custom-select-trigger:has(+ .ds-custom-select-menu.open) .ds-custom-select-caret {
+    transform: rotate(180deg);
+}
+.ds-custom-select-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 0;
+    min-width: 240px;
+    max-height: 260px;
+    overflow-y: auto;
+    background: #FFFFFF;
+    border: 1px solid var(--ds-border-color);
+    border-radius: var(--ds-radius-md);
+    box-shadow: var(--ds-shadow-lg);
+    padding: 6px;
+    z-index: 50;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+}
+.ds-custom-select-menu.open {
+    display: flex;
+}
+.ds-custom-select-option {
+    padding: 10px 14px;
+    border-radius: var(--ds-radius-sm);
+    font-family: var(--ds-font-sans);
+    font-size: var(--ds-fs-sm);
+    font-weight: 500;
+    color: var(--ds-text-primary);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.ds-custom-select-option:hover {
+    background: var(--ds-color-primary-light);
+    color: var(--ds-color-primary);
+}
+.ds-custom-select-option.is-placeholder {
+    color: var(--ds-text-muted);
+    border-bottom: 1px solid var(--ds-border-color);
+    margin-bottom: 4px;
+    padding-bottom: 12px;
+}
+
+/* Grouped destination dropdown (region header + indented countries/states) */
+.ds-custom-select-group-label {
+    padding: 10px 14px 4px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ds-color-primary);
+    cursor: pointer;
+}
+.ds-custom-select-suboption {
+    padding-left: 26px !important;
+    font-size: 13px !important;
+}
+
+/* Pax counter dropdown */
+.ds-pax-menu {
+    min-width: 260px;
+    padding: 14px;
+    gap: 14px;
+}
+.ds-pax-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.ds-pax-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ds-text-primary);
+}
+.ds-pax-sublabel {
+    font-size: 12px;
+    color: var(--ds-text-muted);
+}
+.ds-pax-stepper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.ds-pax-stepper button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ds-border-color);
+    background: #FFFFFF;
+    color: var(--ds-color-primary);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+.ds-pax-stepper button:hover {
+    background: var(--ds-color-primary-light);
+    border-color: var(--ds-color-primary);
+}
+.ds-pax-stepper span {
+    min-width: 18px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--ds-text-primary);
+}
+
 /* --------------------------------------------------------------------------
    6. CARDS, BADGES & NON-CLIPPED SECTION TAGS
    -------------------------------------------------------------------------- */
@@ -1509,11 +1650,11 @@ section:not(.breadcrumb-section):not(.hero-section):not(.header-top-bar) {
 }
 
 .ds-video-test-wrap {
-    height: clamp(160px, 24dvh, 220px);
+    height: clamp(220px, 32dvh, 300px);
 }
 @media (max-height: 750px) {
     .ds-video-test-wrap {
-        height: clamp(130px, 18dvh, 170px);
+        height: clamp(180px, 26dvh, 240px);
     }
 }
 
