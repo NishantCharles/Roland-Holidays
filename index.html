@@ -158,7 +158,7 @@
                     <div class="menu d-flex align-items-center justify-content-between position-relative">
                         <div class="brand-logo">
                             <a href="index.html">
-                                <img src="./assets/img/logo.png" alt="Roland Holidays" class="img-fluid blur-up lazyloaded">
+                                <img src="./assets/img/rolandholidays.png" alt="Roland Holidays" class="img-fluid blur-up lazyloaded">
                             </a>
                         </div>
                         <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
@@ -176,6 +176,17 @@
                                 </div>
                             </div>
                         </nav>
+                        <a href="contact-us.html" class="primary-button ds-btn-kinetic-gold header-cta-btn d-none d-lg-inline-flex">
+                            <div class="button-item-main">
+                                <div class="button-text-pill">
+                                    <div class="primay-button-text">Book Your Escape</div>
+                                    <div class="primay-button-text">Book Your Escape</div>
+                                </div>
+                                <div class="button-arrow-pill">
+                                    <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -186,25 +197,23 @@
 
     <!-- ══════════════ UNIFIED AVENORA MASTER HERO SECTION ══════════════ -->
     <section class="vhero pt-0">
-        <!-- Background video -->
-        <video class="vhero-video" autoplay muted loop playsinline>
-            <source src="https://videos.pexels.com/video-files/34845201/14770127_2560_1440_60fps.mp4" type="video/mp4">
-        </video>
+        <!-- Background image -->
+        <img class="vhero-video" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" alt="Beach destination">
         <!-- Dark overlay -->
         <div class="vhero-overlay"></div>
 
         <!-- Content -->
         <div class="vhero-content py-5">
             <p class="vhero-eyebrow"><span class="vhero-dot"></span> Curated Global Holidays</p>
-            <h1 class="vhero-title text-white ds-heading-5xl">Discover World-Class Travel Packages With <span class="brush-underline-3a">Roland Holidays</span></h1>
-            <p class="vhero-sub max-w-xl text-white-50 mt-3">Tailor-made holidays, expert land arrangements, and 24/7 dedicated support from India's heritage trails to the beaches of Bali &amp; the Maldives.</p>
-          
+            <h1 class="vhero-title text-white ds-heading-5xl">Your Unforgettable <span class="brush-underline-3a">Journey Starts Here.</span></h1>
+            <p class="vhero-sub max-w-xl text-white-50 mt-3">Tailor-made holidays, expert land arrangements, and 24/7 dedicated support — from India's heritage trails to the world's most extraordinary destinations.</p>
+
             <div class="vhero-btns mt-4 d-flex gap-3 flex-wrap justify-content-center">
                 <a href="destinations.html" class="primary-button">
                     <div class="button-item-main">
                         <div class="button-text-pill">
-                            <div class="primay-button-text">Explore All Destinations</div>
-                            <div class="primay-button-text">Explore All Destinations</div>
+                            <div class="primay-button-text">Explore Destinations</div>
+                            <div class="primay-button-text">Explore Destinations</div>
                         </div>
                         <div class="button-arrow-pill">
                             <div class="arrow-wrapper">
@@ -213,11 +222,11 @@
                         </div>
                     </div>
                 </a>
-                <a href="contact-us.html" class="ds-btn-kinetic ds-btn-kinetic-gold">
+                <a href="#" onclick="openDiscoverModal(); return false;" class="ds-btn-kinetic ds-btn-kinetic-gold">
                     <div class="button-item-main">
                         <div class="button-text-pill">
-                            <div class="primay-button-text">Get In Touch With Us</div>
-                            <div class="primay-button-text">Get In Touch With Us</div>
+                            <div class="primay-button-text">Discover More</div>
+                            <div class="primay-button-text">Discover More</div>
                         </div>
                         <div class="button-arrow-pill">
                             <div class="arrow-wrapper">
@@ -234,19 +243,87 @@
     <!-- FLOATING 3-SEGMENT SEARCH PILL BAR (WonderLand / Avenora Style) -->
     <div class="container position-relative" style="margin-top: -35px; z-index: 20;">
         <div class="ds-search-pill-bar">
-            <div class="ds-search-segment">
+            <div class="ds-search-segment ds-custom-select" id="regionDropdownWrap">
                 <i class="fas fa-map-marker-alt ds-search-icon"></i>
-                <input type="text" class="ds-search-input" placeholder="Search Country or State (e.g. Bali, Rajasthan, Thailand)">
+                <button type="button" class="ds-custom-select-trigger" id="regionDropdownTrigger" onclick="toggleRegionDropdown(event)">
+                    <span id="regionSelectLabel">Search Destination</span>
+                    <i class="fas fa-chevron-down ds-custom-select-caret"></i>
+                </button>
+                <div class="ds-custom-select-menu ds-custom-select-menu-grouped" id="regionDropdownMenu">
+                    <div class="ds-custom-select-group-label" onclick="selectHeroDestination('india', '', 'India')">India</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('india', 'Rajasthan', 'Rajasthan')">Rajasthan</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('india', 'Kerala', 'Kerala')">Kerala</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('india', 'Himachal', 'Himachal Pradesh')">Himachal Pradesh</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('india', 'Goa', 'Goa')">Goa</div>
+
+                    <div class="ds-custom-select-group-label" onclick="selectHeroDestination('southeast-asia', '', 'Southeast Asia')">Southeast Asia</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('southeast-asia', 'Thailand', 'Thailand')">Thailand</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('southeast-asia', 'Indonesia', 'Indonesia (Bali DMC)')">Indonesia (Bali DMC)</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('southeast-asia', 'Vietnam', 'Vietnam')">Vietnam</div>
+
+                    <div class="ds-custom-select-group-label" onclick="selectHeroDestination('asia-eurasia', '', 'Asia &amp; Eurasia')">Asia &amp; Eurasia</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('asia-eurasia', 'Maldives', 'Maldives')">Maldives</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('asia-eurasia', 'Turkiye', 'Türkiye')">Türkiye</div>
+
+                    <div class="ds-custom-select-group-label" onclick="selectHeroDestination('africa-islands', '', 'Africa &amp; Islands')">Africa &amp; Islands</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('africa-islands', 'Mauritius', 'Mauritius')">Mauritius</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('africa-islands', 'Seychelles', 'Seychelles')">Seychelles</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectHeroDestination('africa-islands', 'Kenya', 'Kenya')">Kenya</div>
+                </div>
             </div>
-            <div class="ds-search-segment">
+            <div class="ds-search-segment ds-custom-select" id="monthDropdownWrap">
                 <i class="fas fa-calendar-alt ds-search-icon"></i>
-                <input type="text" class="ds-search-input" placeholder="Travel Month / Season">
+                <button type="button" class="ds-custom-select-trigger" id="monthDropdownTrigger" onclick="toggleGenericDropdown(event, 'monthDropdownMenu')">
+                    <span id="monthSelectLabel">Travel Month / Season</span>
+                    <i class="fas fa-chevron-down ds-custom-select-caret"></i>
+                </button>
+                <div class="ds-custom-select-menu" id="monthDropdownMenu">
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('winter', 'January')">January</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('winter', 'February')">February</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'March')">March</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'April')">April</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'May')">May</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'June')">June</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'July')">July</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'August')">August</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'September')">September</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'October')">October</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('winter', 'November')">November</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('winter', 'December')">December</div>
+                </div>
             </div>
-            <div class="ds-search-segment">
+            <div class="ds-search-segment ds-custom-select" id="paxDropdownWrap">
                 <i class="fas fa-user-friends ds-search-icon"></i>
-                <input type="text" class="ds-search-input" placeholder="2 Travelers / Pax">
+                <button type="button" class="ds-custom-select-trigger" id="paxDropdownTrigger" onclick="toggleGenericDropdown(event, 'paxDropdownMenu')">
+                    <span id="paxSelectLabel">2 Adults</span>
+                    <i class="fas fa-chevron-down ds-custom-select-caret"></i>
+                </button>
+                <div class="ds-custom-select-menu ds-pax-menu" id="paxDropdownMenu">
+                    <div class="ds-pax-row">
+                        <div>
+                            <div class="ds-pax-label">Adults</div>
+                            <div class="ds-pax-sublabel">Age 13+</div>
+                        </div>
+                        <div class="ds-pax-stepper">
+                            <button type="button" onclick="changePax('adults', -1)">−</button>
+                            <span id="adultsCount">2</span>
+                            <button type="button" onclick="changePax('adults', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="ds-pax-row">
+                        <div>
+                            <div class="ds-pax-label">Children</div>
+                            <div class="ds-pax-sublabel">Age 0–12</div>
+                        </div>
+                        <div class="ds-pax-stepper">
+                            <button type="button" onclick="changePax('children', -1)">−</button>
+                            <span id="childrenCount">0</span>
+                            <button type="button" onclick="changePax('children', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="destinations.html" class="primary-button">
+            <a href="destinations.html" id="heroFilterBtn" class="primary-button" onclick="return applyHeroRegionFilter()">
                 <div class="button-item-main">
                     <div class="button-text-pill">
                         <div class="primay-button-text">Filter Tours</div>
@@ -261,6 +338,80 @@
             </a>
         </div>
     </div>
+
+    <script>
+        var selectedHeroRegion = '';
+        var selectedHeroDestination = '';
+        var selectedHeroSeason = '';
+        var heroAdults = 2;
+        var heroChildren = 0;
+
+        function closeAllHeroDropdowns() {
+            document.querySelectorAll('.ds-custom-select-menu').forEach(function(m) { m.classList.remove('open'); });
+        }
+
+        function toggleRegionDropdown(e) {
+            e.stopPropagation();
+            var menu = document.getElementById('regionDropdownMenu');
+            var wasOpen = menu.classList.contains('open');
+            closeAllHeroDropdowns();
+            if (!wasOpen) menu.classList.add('open');
+        }
+
+        function toggleGenericDropdown(e, menuId) {
+            e.stopPropagation();
+            var menu = document.getElementById(menuId);
+            var wasOpen = menu.classList.contains('open');
+            closeAllHeroDropdowns();
+            if (!wasOpen) menu.classList.add('open');
+        }
+
+        function selectHeroDestination(region, destination, label) {
+            selectedHeroRegion = region;
+            selectedHeroDestination = destination;
+            document.getElementById('regionSelectLabel').textContent = label;
+            closeAllHeroDropdowns();
+        }
+
+        function selectHeroMonth(season, label) {
+            selectedHeroSeason = season;
+            document.getElementById('monthSelectLabel').textContent = label;
+            closeAllHeroDropdowns();
+        }
+
+        function changePax(type, delta) {
+            if (type === 'adults') {
+                heroAdults = Math.max(1, heroAdults + delta);
+                document.getElementById('adultsCount').textContent = heroAdults;
+            } else {
+                heroChildren = Math.max(0, heroChildren + delta);
+                document.getElementById('childrenCount').textContent = heroChildren;
+            }
+            var parts = [heroAdults + (heroAdults === 1 ? ' Adult' : ' Adults')];
+            if (heroChildren > 0) parts.push(heroChildren + (heroChildren === 1 ? ' Child' : ' Children'));
+            document.getElementById('paxSelectLabel').textContent = parts.join(', ');
+        }
+
+        document.addEventListener('click', function(e) {
+            var wraps = ['regionDropdownWrap', 'monthDropdownWrap', 'paxDropdownWrap'];
+            wraps.forEach(function(id) {
+                var wrap = document.getElementById(id);
+                if (wrap && !wrap.contains(e.target)) {
+                    wrap.querySelector('.ds-custom-select-menu').classList.remove('open');
+                }
+            });
+        });
+
+        function applyHeroRegionFilter() {
+            var btn = document.getElementById('heroFilterBtn');
+            var params = [];
+            if (selectedHeroRegion) params.push('region=' + encodeURIComponent(selectedHeroRegion));
+            if (selectedHeroSeason) params.push('season=' + encodeURIComponent(selectedHeroSeason));
+            if (selectedHeroDestination) params.push('q=' + encodeURIComponent(selectedHeroDestination));
+            btn.setAttribute('href', params.length ? ('destinations.html?' + params.join('&')) : 'destinations.html');
+            return true;
+        }
+    </script>
 
     <!-- STADIUM OVAL ARCH CATEGORIES SECTION (Level 1 Branching Hub) -->
     <section class="py-section bg-white">
@@ -462,6 +613,40 @@
     <!-- TRAVEL OFFERINGS SECTION END -->
 
 
+    <!-- ══════════════ TRUST BADGES SECTION ══════════════ -->
+    <section class="py-section bg-slate-50">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <div class="ds-trust-card">
+                        <div class="ds-trust-card-icon"><i class="fas fa-trophy"></i></div>
+                        <h6>30+ Years of Trust</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="ds-trust-card">
+                        <div class="ds-trust-card-icon"><i class="fas fa-check-circle"></i></div>
+                        <h6>Verified Travel Partner</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="ds-trust-card">
+                        <div class="ds-trust-card-icon"><i class="fas fa-globe-asia"></i></div>
+                        <h6>500+ Destinations Curated</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="ds-trust-card">
+                        <div class="ds-trust-card-icon"><i class="fas fa-headset"></i></div>
+                        <h6>24/7 Dedicated Support</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- TRUST BADGES SECTION END -->
+
+
     <!-- ══════════════ PARTNER STORIES TESTIMONIALS SECTION ══════════════ -->
     <section class="py-section bg-slate-50">
         <div class="container text-center">
@@ -552,6 +737,188 @@
     <!-- PARTNER STORIES TESTIMONIALS SECTION END -->
 
 
+    <!-- ══════════════ PLAN BY MONTH SECTION ══════════════ -->
+    <section class="py-section bg-slate-50">
+        <div class="container text-center">
+            <span class="section-tag mb-1">Plan Ahead</span>
+            <h2 class="ds-heading-4xl mb-2">Plan Your Trip <span class="brush-underline-3a">By Month</span></h2>
+            <p class="text-muted max-w-xl mx-auto mb-4">Find the best season and destinations for whenever you want to travel.</p>
+
+            <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+                <button type="button" class="ds-month-season-pill active" data-season="all">All</button>
+                <button type="button" class="ds-month-season-pill" data-season="spring">Spring</button>
+                <button type="button" class="ds-month-season-pill" data-season="summer">Summer</button>
+                <button type="button" class="ds-month-season-pill" data-season="monsoon-autumn">Monsoon-Autumn</button>
+                <button type="button" class="ds-month-season-pill" data-season="winter">Winter</button>
+            </div>
+
+            <div class="row g-4" id="monthGrid">
+                <!-- January -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="winter">
+                    <a href="month-detail.html?month=january" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">January Escapes</span>
+                            <h6>Snowy Retreats &amp; Warm Island Sun</h6>
+                            <span class="ds-month-card-dest">Switzerland, Maldives</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- February -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="winter">
+                    <a href="month-detail.html?month=february" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">February Escapes</span>
+                            <h6>Romantic Escapes &amp; Winter Wonders</h6>
+                            <span class="ds-month-card-dest">Venice, Agra</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- March -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="spring">
+                    <a href="month-detail.html?month=march" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">March Escapes</span>
+                            <h6>Spring Blossoms &amp; Cultural Heritage</h6>
+                            <span class="ds-month-card-dest">Japan, Dubai</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- April -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="spring">
+                    <a href="month-detail.html?month=april" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">April Escapes</span>
+                            <h6>Pleasant Horizons &amp; Valley Retreats</h6>
+                            <span class="ds-month-card-dest">Bhutan, Himachal</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- May -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="summer">
+                    <a href="month-detail.html?month=may" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">May Escapes</span>
+                            <h6>Pre-Summer Explorations &amp; Alpine Trails</h6>
+                            <span class="ds-month-card-dest">Turkey, Switzerland</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- June -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="summer">
+                    <a href="month-detail.html?month=june" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">June Escapes</span>
+                            <h6>High-Altitude Escapes &amp; Global Adventures</h6>
+                            <span class="ds-month-card-dest">Canada, Kashmir</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- July -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="monsoon-autumn">
+                    <a href="month-detail.html?month=july" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">July Escapes</span>
+                            <h6>Monsoon Magic &amp; Lush Green Retreats</h6>
+                            <span class="ds-month-card-dest">Kerala, Western Ghats</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- August -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="monsoon-autumn">
+                    <a href="month-detail.html?month=august" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">August Escapes</span>
+                            <h6>Global Explorations &amp; Scenic Wonders</h6>
+                            <span class="ds-month-card-dest">Iceland, Peru</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- September -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="monsoon-autumn">
+                    <a href="month-detail.html?month=september" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">September Escapes</span>
+                            <h6>Shoulder-Season Serenity</h6>
+                            <span class="ds-month-card-dest">Greece, Bali</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- October -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="monsoon-autumn">
+                    <a href="month-detail.html?month=october" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1476820865390-c52aeebb9891?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">October Escapes</span>
+                            <h6>Golden Foliage &amp; Festive Celebrations</h6>
+                            <span class="ds-month-card-dest">New England, Egypt</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- November -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="winter">
+                    <a href="month-detail.html?month=november" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">November Escapes</span>
+                            <h6>Early Winter Magic &amp; Cozy Escapes</h6>
+                            <span class="ds-month-card-dest">Thailand, Europe Markets</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- December -->
+                <div class="col-lg-3 col-md-4 col-6 ds-month-card-wrap" data-season="winter">
+                    <a href="month-detail.html?month=december" class="ds-month-card d-block text-decoration-none" style="background-image:url('https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=600&q=70');">
+                        <div class="ds-month-card-overlay"></div>
+                        <div class="ds-month-card-text">
+                            <span class="ds-month-card-tag">December Escapes</span>
+                            <h6>Festive Finales &amp; Year-End Celebrations</h6>
+                            <span class="ds-month-card-dest">Lapland, Tropical New Year</span>
+                            <span class="ds-month-explore">Explore Month <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function () {
+            var pills = document.querySelectorAll('.ds-month-season-pill');
+            var cards = document.querySelectorAll('.ds-month-card-wrap');
+            pills.forEach(function (pill) {
+                pill.addEventListener('click', function () {
+                    pills.forEach(function (p) { p.classList.remove('active'); });
+                    pill.classList.add('active');
+                    var season = pill.getAttribute('data-season');
+                    cards.forEach(function (card) {
+                        card.style.display = (season === 'all' || card.getAttribute('data-season') === season) ? '' : 'none';
+                    });
+                });
+            });
+        })();
+    </script>
+    <!-- PLAN BY MONTH SECTION END -->
+
+
     <!-- ══════════════ VIDEO CTA BANNER SECTION ══════════════ -->
     <section class="py-section bg-white">
         <div class="container">
@@ -602,7 +969,7 @@
                 <div class="col-lg-4">
                     <div class="footer-logo mb-3">
                         <a href="index.html">
-                            <img src="./assets/img/logo.png" alt="Roland Holidays">
+                            <img src="./assets/img/rolandholidays.png" alt="Roland Holidays">
                         </a>
                     </div>
                     <p class="ds-footer-text mb-3">
@@ -726,6 +1093,88 @@
     <!-- Design System JS Engine -->
     <script src="./assets/js/design-system.js"></script>
 
+    <!-- ══════════════ DISCOVER MORE ENQUIRY MODAL ══════════════ -->
+    <div id="discoverModal" class="ds-modal-overlay" onclick="if(event.target===this) closeDiscoverModal();">
+        <div class="ds-modal-box">
+            <button type="button" class="ds-modal-close" onclick="closeDiscoverModal()" aria-label="Close">&times;</button>
+            <div class="text-center mb-4">
+                <span class="section-tag mb-1">Get Started</span>
+                <h3 class="ds-heading-3xl mb-2">Discover Your Perfect Trip</h3>
+                <p class="text-muted mb-0">Tell us a bit about your plans and our team will reach out on WhatsApp.</p>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="ds-form-label">Full Name</label>
+                    <input type="text" id="discoverName" class="ds-input-light" placeholder="Your Name">
+                </div>
+                <div class="col-md-6">
+                    <label class="ds-form-label">Email Address</label>
+                    <input type="email" id="discoverEmail" class="ds-input-light" placeholder="you@email.com">
+                </div>
+                <div class="col-md-6">
+                    <label class="ds-form-label">WhatsApp / Phone</label>
+                    <input type="tel" id="discoverPhone" class="ds-input-light" placeholder="+91 98765 43210">
+                </div>
+                <div class="col-md-6">
+                    <label class="ds-form-label">Preferred Destination</label>
+                    <input type="text" id="discoverDestination" class="ds-input-light" placeholder="e.g. Maldives, Thailand">
+                </div>
+                <div class="col-md-12">
+                    <label class="ds-form-label">Message</label>
+                    <textarea id="discoverMessage" class="ds-input-light" rows="3" placeholder="Tell us about your travel plans..."></textarea>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button type="button" onclick="submitDiscoverEnquiry()" class="primary-button ds-btn-whatsapp d-inline-flex">
+                    <div class="button-item-main">
+                        <div class="button-text-pill">
+                            <div class="primay-button-text">Send via WhatsApp</div>
+                            <div class="primay-button-text">Send via WhatsApp</div>
+                        </div>
+                        <div class="button-arrow-pill">
+                            <div class="arrow-wrapper"><i class="fab fa-whatsapp button-arrow"></i></div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openDiscoverModal() {
+            document.getElementById('discoverModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDiscoverModal() {
+            document.getElementById('discoverModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function submitDiscoverEnquiry() {
+            var name = document.getElementById('discoverName').value.trim();
+            var email = document.getElementById('discoverEmail').value.trim();
+            var phone = document.getElementById('discoverPhone').value.trim();
+            var destination = document.getElementById('discoverDestination').value.trim();
+            var message = document.getElementById('discoverMessage').value.trim();
+
+            if (!name || !phone) {
+                alert('Please enter your name and WhatsApp/phone number.');
+                return;
+            }
+
+            var text = 'Hi Roland Holidays! 👋\n\n' +
+                'I would like to enquire about planning a trip.\n\n' +
+                '📋 *My Details:*\n' +
+                '  👤 *Name:* ' + name + '\n' +
+                '  📧 *Email:* ' + (email || 'Not provided') + '\n' +
+                '  📱 *WhatsApp:* ' + phone + '\n' +
+                '  📍 *Preferred Destination:* ' + (destination || 'Not specified') + '\n' +
+                (message ? '  💬 *Message:* ' + message + '\n' : '') +
+                '\nPlease share more details and pricing. Thank you!';
+
+            var encodedText = encodeURIComponent(text);
+            window.open('https://api.whatsapp.com/send?phone=919769421051&text=' + encodedText, '_blank');
+            closeDiscoverModal();
+        }
+    </script>
 
 </body>
 

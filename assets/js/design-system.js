@@ -10,7 +10,40 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileDrawer();
     initWebpOptimizer();
     initDestinationCardClick();
+    initFloatingWhatsApp();
 });
+
+/**
+ * Site-wide Floating WhatsApp Widget
+ */
+function initFloatingWhatsApp() {
+    if (document.body.classList.contains('no-whatsapp-widget')) return;
+    if (document.getElementById('dsFloatingWhatsApp')) return;
+
+    const link = document.createElement('a');
+    link.id = 'dsFloatingWhatsApp';
+    link.href = 'https://api.whatsapp.com/send?phone=919769421051';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.setAttribute('aria-label', 'Chat with us on WhatsApp');
+    link.innerHTML = '<i class="fab fa-whatsapp"></i>';
+    var isMobile = window.innerWidth <= 576;
+    var size = isMobile ? '50px' : '58px';
+    var bottomOffset = isMobile ? '16px' : '24px';
+    var rightOffset = isMobile ? '16px' : '24px';
+    link.style.cssText = [
+        'position:fixed', 'bottom:' + bottomOffset, 'right:' + rightOffset,
+        'width:' + size, 'height:' + size,
+        'background:#25D366', 'color:#fff', 'border-radius:50%',
+        'display:flex', 'align-items:center', 'justify-content:center',
+        'font-size:' + (isMobile ? '26px' : '30px'), 'box-shadow:0 6px 20px rgba(0,0,0,0.25)',
+        'z-index:9999', 'text-decoration:none', 'transition:transform 0.2s ease'
+    ].join(';');
+    link.addEventListener('mouseenter', () => { link.style.transform = 'scale(1.08)'; });
+    link.addEventListener('mouseleave', () => { link.style.transform = 'scale(1)'; });
+
+    document.body.appendChild(link);
+}
 
 /**
  * 0. Clean Minimal Logo Loader Engine

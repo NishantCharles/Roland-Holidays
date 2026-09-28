@@ -2,7 +2,7 @@
    ROLAND HOLIDAYS — MASTER DESIGN SYSTEM CSS (v3.2 Style 3 Underline Family)
    - Style 3 Gentle Arc Sweep as Primary Base Underline Style
    - 4 Subtle Variants of Style 3 (3A, 3B, 3C, 3D)
-   - Brand Champagne Gold (#D4AF37) stroke color
+   - Brand Champagne Gold (#FF7F50) stroke color
    - Single Unified Font Family: 'Ubuntu'
    - Centralized Parent Architecture
    ========================================================================== */
@@ -14,23 +14,23 @@
    -------------------------------------------------------------------------- */
 :root {
     /* Brand Colors (Roland Holidays Palette) */
-    --ds-color-primary: #1E4FA3;
-    --ds-color-primary-electric: #1E4FA3;
-    --ds-color-primary-hover: #163C7D;
-    --ds-color-primary-light: rgba(30, 79, 163, 0.08);
+    --ds-color-primary: #008080;
+    --ds-color-primary-electric: #008080;
+    --ds-color-primary-hover: #006666;
+    --ds-color-primary-light: rgba(0, 128, 128, 0.08);
 
     --ds-color-secondary: #5A9ABF;
     --ds-color-sky: #7FB4D4;
 
-    --ds-color-gold: #D4AF37;
-    --ds-color-gold-hover: #B89528;
-    --ds-color-gold-light: rgba(212, 175, 55, 0.12);
+    --ds-color-gold: #FF7F50;
+    --ds-color-gold-hover: #E86A3C;
+    --ds-color-gold-light: rgba(255, 127, 80, 0.12);
 
     --ds-color-navy: #0D1F2D;
     --ds-color-navy-surface: #101A2D;
 
     --ds-color-coral: #E53935;
-    --ds-color-yellow-brush: #D4AF37;
+    --ds-color-yellow-brush: #FF7F50;
 
     /* Neutrals & Surfaces */
     --ds-bg-main: #F8FAFC;
@@ -39,7 +39,7 @@
     --ds-border-color: #E2E8F0;
 
     /* Text Colors */
-    --ds-text-primary: #0F172A;
+    --ds-text-primary: #2F4F4F;
     --ds-text-secondary: #475569;
     --ds-text-muted: #94A3B8;
 
@@ -210,8 +210,8 @@ h1, h2, h3, h4, h5, h6 {
 .brand-logo img,
 .footer-logo img,
 .logo-wrapper img {
-    max-height: 85px !important;
-    height: 85px !important;
+    max-height: 52px !important;
+    height: 52px !important;
     width: auto !important;
     object-fit: contain !important;
     display: block !important;
@@ -245,7 +245,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu {
     display: flex !important;
     align-items: center !important;
-    gap: 32px !important;
+    gap: 40px !important;
     list-style: none !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -440,7 +440,7 @@ header .main-navbar .nav-menu > li > a::after,
 
     .toggle-nav i,
     .toggle-nav .sidebar-bar {
-        color: #0F172A !important;
+        color: #2F4F4F !important;
         font-size: 20px !important;
         display: block !important;
     }
@@ -515,7 +515,7 @@ header .main-navbar .nav-menu > li > a::after,
         border-radius: 50% !important;
         background: #F1F5F9 !important;
         border: 1px solid #E2E8F0 !important;
-        color: #0F172A !important;
+        color: #2F4F4F !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -575,7 +575,7 @@ header .main-navbar .nav-menu > li > a::after,
         height: 28px !important;
         border-radius: 6px !important;
         background: #F1F5F9 !important;
-        color: #1E4FA3 !important;
+        color: #008080 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -590,19 +590,19 @@ header .main-navbar .nav-menu > li > a::after,
 
     .nav-menu li a:hover {
         background: #F8FAFC !important;
-        color: #1E4FA3 !important;
+        color: #008080 !important;
     }
 
     .nav-menu li a.active,
     header .main-navbar .nav-menu > li > a.active {
-        background: rgba(30, 79, 163, 0.08) !important;
-        color: #1E4FA3 !important;
+        background: rgba(0, 128, 128, 0.08) !important;
+        color: #008080 !important;
         font-weight: 700 !important;
-        border-left: 3px solid #1E4FA3 !important;
+        border-left: 3px solid #008080 !important;
     }
 
     .nav-menu li a.active .nav-link-icon {
-        background: #1E4FA3 !important;
+        background: #008080 !important;
         color: #FFFFFF !important;
     }
 
@@ -625,13 +625,13 @@ header .main-navbar .nav-menu > li > a::after,
         gap: 8px !important;
         width: 100% !important;
         padding: 11px !important;
-        background: #1E4FA3 !important;
+        background: #008080 !important;
         color: #FFFFFF !important;
         font-size: 13px !important;
         font-weight: 700 !important;
         border-radius: 8px !important;
         text-decoration: none !important;
-        box-shadow: 0 4px 12px rgba(30, 79, 163, 0.25) !important;
+        box-shadow: 0 4px 12px rgba(0, 128, 128, 0.25) !important;
     }
 
     .ds-drawer-btn-wa {
@@ -804,7 +804,7 @@ header .main-navbar .nav-menu > li > a::after,
 .primary-button:hover, .ds-btn-kinetic:hover {
     transform: translateY(-2px);
     box-shadow: var(--ds-shadow-md);
-    border-color: rgba(30, 79, 163, 0.4);
+    border-color: rgba(0, 128, 128, 0.4);
 }
 
 .button-item-main {
@@ -968,7 +968,7 @@ header .main-navbar .nav-menu > li > a::after,
 
 .ds-category-arch:hover .ds-category-arch-img {
     transform: translateY(-6px) scale(1.03);
-    box-shadow: var(--ds-shadow-lg), 0 0 20px rgba(30, 79, 163, 0.25);
+    box-shadow: var(--ds-shadow-lg), 0 0 20px rgba(0, 128, 128, 0.25);
     border-color: var(--ds-color-primary);
 }
 
@@ -1083,6 +1083,147 @@ header .main-navbar .nav-menu > li > a::after,
 }
 .ds-search-input:focus { outline: none; }
 
+/* ── Custom styled dropdown (replaces native <select> for cross-browser design control) ── */
+.ds-custom-select {
+    position: relative;
+}
+.ds-custom-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: var(--ds-font-sans);
+    font-size: var(--ds-fs-sm);
+    font-weight: 500;
+    color: var(--ds-text-primary);
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+}
+.ds-custom-select-trigger span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ds-custom-select-caret {
+    font-size: 11px;
+    color: var(--ds-text-muted);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+.ds-custom-select-trigger:has(+ .ds-custom-select-menu.open) .ds-custom-select-caret {
+    transform: rotate(180deg);
+}
+.ds-custom-select-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 0;
+    min-width: 240px;
+    max-height: 260px;
+    overflow-y: auto;
+    background: #FFFFFF;
+    border: 1px solid var(--ds-border-color);
+    border-radius: var(--ds-radius-md);
+    box-shadow: var(--ds-shadow-lg);
+    padding: 6px;
+    z-index: 50;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+}
+.ds-custom-select-menu.open {
+    display: flex;
+}
+.ds-custom-select-option {
+    padding: 10px 14px;
+    border-radius: var(--ds-radius-sm);
+    font-family: var(--ds-font-sans);
+    font-size: var(--ds-fs-sm);
+    font-weight: 500;
+    color: var(--ds-text-primary);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.ds-custom-select-option:hover {
+    background: var(--ds-color-primary-light);
+    color: var(--ds-color-primary);
+}
+.ds-custom-select-option.is-placeholder {
+    color: var(--ds-text-muted);
+    border-bottom: 1px solid var(--ds-border-color);
+    margin-bottom: 4px;
+    padding-bottom: 12px;
+}
+
+/* Grouped destination dropdown (region header + indented countries/states) */
+.ds-custom-select-group-label {
+    padding: 10px 14px 4px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ds-color-primary);
+    cursor: pointer;
+}
+.ds-custom-select-suboption {
+    padding-left: 26px !important;
+    font-size: 13px !important;
+}
+
+/* Pax counter dropdown */
+.ds-pax-menu {
+    min-width: 260px;
+    padding: 14px;
+    gap: 14px;
+}
+.ds-pax-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.ds-pax-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ds-text-primary);
+}
+.ds-pax-sublabel {
+    font-size: 12px;
+    color: var(--ds-text-muted);
+}
+.ds-pax-stepper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.ds-pax-stepper button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ds-border-color);
+    background: #FFFFFF;
+    color: var(--ds-color-primary);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+.ds-pax-stepper button:hover {
+    background: var(--ds-color-primary-light);
+    border-color: var(--ds-color-primary);
+}
+.ds-pax-stepper span {
+    min-width: 18px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--ds-text-primary);
+}
+
 /* --------------------------------------------------------------------------
    6. CARDS, BADGES & NON-CLIPPED SECTION TAGS
    -------------------------------------------------------------------------- */
@@ -1120,12 +1261,12 @@ header .main-navbar .nav-menu > li > a::after,
 .ds-badge-primary {
     background-color: var(--ds-color-primary-light);
     color: var(--ds-color-primary);
-    border: 1px solid rgba(30, 79, 163, 0.2);
+    border: 1px solid rgba(0, 128, 128, 0.2);
 }
 .ds-badge-gold {
     background-color: var(--ds-color-gold-light);
     color: #997A15;
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(255, 127, 80, 0.3);
 }
 
 /* Simple Clean Eyebrow Text (No Capsule / Pill Container) */
@@ -1154,7 +1295,7 @@ header .main-navbar .nav-menu > li > a::after,
 
 .ds-team-card:hover {
     transform: translateY(-6px) !important;
-    box-shadow: 0 16px 36px rgba(30, 79, 163, 0.12) !important;
+    box-shadow: 0 16px 36px rgba(0, 128, 128, 0.12) !important;
 }
 
 .ds-team-card img {
@@ -1278,15 +1419,15 @@ header .main-navbar .nav-menu > li > a::after,
 }
 
 .ds-spot-card:hover {
-    border-color: #D4AF37;
+    border-color: #FF7F50;
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 8px 24px rgba(255, 127, 80, 0.15);
 }
 
 .ds-spot-card.selected {
-    border-color: #1E4FA3;
+    border-color: #008080;
     background: #F8FAFC;
-    box-shadow: 0 0 0 1px #1E4FA3;
+    box-shadow: 0 0 0 1px #008080;
 }
 
 .ds-spot-checkbox {
@@ -1305,12 +1446,12 @@ header .main-navbar .nav-menu > li > a::after,
 }
 
 .ds-spot-card:hover .ds-spot-checkbox {
-    border-color: #D4AF37;
+    border-color: #FF7F50;
 }
 
 .ds-spot-card.selected .ds-spot-checkbox {
-    background-color: #1E4FA3;
-    border-color: #1E4FA3;
+    background-color: #008080;
+    border-color: #008080;
 }
 
 .ds-spot-info {
@@ -1331,7 +1472,7 @@ header .main-navbar .nav-menu > li > a::after,
 }
 
 .ds-builder-summary-panel {
-    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    background: linear-gradient(135deg, #2F4F4F 0%, #1E293B 100%);
     border-radius: 16px;
     padding: 24px;
     color: #FFFFFF;
@@ -1355,8 +1496,8 @@ header .main-navbar .nav-menu > li > a::after,
 }
 .ds-input:focus, .ds-select:focus {
     background: rgba(255, 255, 255, 0.15) !important;
-    border-color: #D4AF37;
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    border-color: #FF7F50;
+    box-shadow: 0 0 0 3px rgba(255, 127, 80, 0.2);
 }
 .ds-select option {
     background: #1E293B;
@@ -1509,11 +1650,11 @@ section:not(.breadcrumb-section):not(.hero-section):not(.header-top-bar) {
 }
 
 .ds-video-test-wrap {
-    height: clamp(160px, 24dvh, 220px);
+    height: clamp(220px, 32dvh, 300px);
 }
 @media (max-height: 750px) {
     .ds-video-test-wrap {
-        height: clamp(130px, 18dvh, 170px);
+        height: clamp(180px, 26dvh, 240px);
     }
 }
 
@@ -1553,7 +1694,7 @@ section:not(.breadcrumb-section):not(.hero-section):not(.header-top-bar) {
 .ds-video-cta-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(13, 31, 45, 0.88) 0%, rgba(30, 79, 163, 0.78) 100%);
+    background: linear-gradient(135deg, rgba(13, 31, 45, 0.88) 0%, rgba(0, 128, 128, 0.78) 100%);
     z-index: 1;
 }
 
@@ -1613,14 +1754,14 @@ section:not(.breadcrumb-section):not(.hero-section):not(.header-top-bar) {
 
 .region-pill:hover, 
 .season-pill:hover {
-    color: #0F172A !important;
+    color: #2F4F4F !important;
 }
 
 .region-pill.active, 
 .season-pill.active {
     color: #FFFFFF !important;
     font-weight: 600 !important;
-    background: #0F172A !important;
+    background: #2F4F4F !important;
     border: none !important;
     box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25) !important;
 }
@@ -1660,9 +1801,9 @@ section:not(.breadcrumb-section):not(.hero-section):not(.header-top-bar) {
     /* Mobile Direct Active State: ensure active pill is 100% crisp, highlighted, with solid brand background */
     .region-pill.active,
     .season-pill.active {
-        background: #1E4FA3 !important;
+        background: #008080 !important;
         color: #FFFFFF !important;
-        box-shadow: 0 2px 8px rgba(30, 79, 163, 0.3) !important;
+        box-shadow: 0 2px 8px rgba(0, 128, 128, 0.3) !important;
     }
     .ds-glider {
         display: none !important;
@@ -1676,7 +1817,7 @@ section:not(.breadcrumb-section):not(.hero-section):not(.header-top-bar) {
 }
 
 .ds-footer-heading {
-    color: #0F172A !important;
+    color: #2F4F4F !important;
     font-weight: 700 !important;
     font-size: 15px !important;
     text-transform: uppercase !important;
@@ -1719,7 +1860,7 @@ section:not(.breadcrumb-section):not(.hero-section):not(.header-top-bar) {
 
 .ds-footer-links a:hover,
 .text-hover-gold:hover {
-    color: #1E4FA3 !important;
+    color: #008080 !important;
     transform: translateX(3px);
 }
 
@@ -1782,8 +1923,8 @@ body {
     inset: -4px;
     border-radius: 50%;
     border: 2px solid #F1F5F9;
-    border-top-color: #1E4FA3;
-    border-right-color: #D4AF37;
+    border-top-color: #008080;
+    border-right-color: #FF7F50;
     animation: dsLoaderSpin 0.9s linear infinite;
 }
 
@@ -1802,7 +1943,7 @@ body {
     left: 0;
     height: 100%;
     width: 40%;
-    background: linear-gradient(90deg, #1E4FA3, #D4AF37);
+    background: linear-gradient(90deg, #008080, #FF7F50);
     border-radius: 99px;
     animation: dsLoaderSlide 1.3s ease-in-out infinite;
 }

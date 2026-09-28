@@ -45,7 +45,7 @@
                     <div class="menu d-flex align-items-center justify-content-between position-relative">
                         <div class="brand-logo">
                             <a href="index.html">
-                                <img src="./assets/img/logo.png" alt="Roland Holidays" class="img-fluid blur-up lazyloaded">
+                                <img src="./assets/img/rolandholidays.png" alt="Roland Holidays" class="img-fluid blur-up lazyloaded">
                             </a>
                         </div>
                         <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
@@ -63,6 +63,17 @@
                                 </div>
                             </div>
                         </nav>
+                        <a href="contact-us.html" class="primary-button ds-btn-kinetic-gold header-cta-btn d-none d-lg-inline-flex">
+                            <div class="button-item-main">
+                                <div class="button-text-pill">
+                                    <div class="primay-button-text">Book Your Escape</div>
+                                    <div class="primay-button-text">Book Your Escape</div>
+                                </div>
+                                <div class="button-arrow-pill">
+                                    <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -84,17 +95,88 @@
     <!-- FLOATING 3-SEGMENT SEARCH PILL BAR (WonderLand Style) -->
     <div class="container position-relative mb-5" style="margin-top: -35px; z-index: 20;">
         <div class="ds-search-pill-bar">
-            <div class="ds-search-segment">
+            <div class="ds-search-segment ds-custom-select" id="destDropdownWrap">
                 <i class="fas fa-map-marker-alt ds-search-icon"></i>
-                <input type="text" id="destSearchInput" class="ds-search-input" placeholder="Search destination (e.g. Dubai, Bali, Maldives)">
+                <button type="button" class="ds-custom-select-trigger" id="destDropdownTrigger" onclick="toggleGenericDropdown(event, 'destDropdownMenu')">
+                    <span id="destSelectLabel">Search destination</span>
+                    <i class="fas fa-chevron-down ds-custom-select-caret"></i>
+                </button>
+                <input type="hidden" id="destSearchInput">
+                <div class="ds-custom-select-menu ds-custom-select-menu-grouped" id="destDropdownMenu">
+                    <div class="ds-custom-select-option" onclick="selectDestSearch('', '', 'All Destinations')">All Destinations</div>
+
+                    <div class="ds-custom-select-group-label" onclick="selectDestSearch('india', '', 'India')">India</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('india', 'Rajasthan', 'Rajasthan')">Rajasthan</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('india', 'Kerala', 'Kerala')">Kerala</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('india', 'Himachal', 'Himachal Pradesh')">Himachal Pradesh</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('india', 'Goa', 'Goa')">Goa</div>
+
+                    <div class="ds-custom-select-group-label" onclick="selectDestSearch('southeast-asia', '', 'Southeast Asia')">Southeast Asia</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('southeast-asia', 'Thailand', 'Thailand')">Thailand</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('southeast-asia', 'Indonesia', 'Indonesia (Bali DMC)')">Indonesia (Bali DMC)</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('southeast-asia', 'Vietnam', 'Vietnam')">Vietnam</div>
+
+                    <div class="ds-custom-select-group-label" onclick="selectDestSearch('asia-eurasia', '', 'Asia &amp; Eurasia')">Asia &amp; Eurasia</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('asia-eurasia', 'Maldives', 'Maldives')">Maldives</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('asia-eurasia', 'Turkiye', 'Türkiye')">Türkiye</div>
+
+                    <div class="ds-custom-select-group-label" onclick="selectDestSearch('africa-islands', '', 'Africa &amp; Islands')">Africa &amp; Islands</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('africa-islands', 'Mauritius', 'Mauritius')">Mauritius</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('africa-islands', 'Seychelles', 'Seychelles')">Seychelles</div>
+                    <div class="ds-custom-select-option ds-custom-select-suboption" onclick="selectDestSearch('africa-islands', 'Kenya', 'Kenya')">Kenya</div>
+                </div>
             </div>
-            <div class="ds-search-segment">
+            <div class="ds-search-segment ds-custom-select" id="monthDropdownWrap">
                 <i class="fas fa-calendar-alt ds-search-icon"></i>
-                <input type="text" class="ds-search-input" placeholder="Travel Month / Season">
+                <button type="button" class="ds-custom-select-trigger" id="monthDropdownTrigger" onclick="toggleGenericDropdown(event, 'monthDropdownMenu')">
+                    <span id="monthSelectLabel">Travel Month / Season</span>
+                    <i class="fas fa-chevron-down ds-custom-select-caret"></i>
+                </button>
+                <div class="ds-custom-select-menu" id="monthDropdownMenu">
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('winter', 'January')">January</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('winter', 'February')">February</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'March')">March</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'April')">April</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'May')">May</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'June')">June</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'July')">July</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'August')">August</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'September')">September</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('summer', 'October')">October</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('winter', 'November')">November</div>
+                    <div class="ds-custom-select-option" onclick="selectHeroMonth('winter', 'December')">December</div>
+                </div>
             </div>
-            <div class="ds-search-segment">
+            <div class="ds-search-segment ds-custom-select" id="paxDropdownWrap">
                 <i class="fas fa-user-friends ds-search-icon"></i>
-                <input type="text" class="ds-search-input" placeholder="Agent Pax Count">
+                <button type="button" class="ds-custom-select-trigger" id="paxDropdownTrigger" onclick="toggleGenericDropdown(event, 'paxDropdownMenu')">
+                    <span id="paxSelectLabel">2 Adults</span>
+                    <i class="fas fa-chevron-down ds-custom-select-caret"></i>
+                </button>
+                <div class="ds-custom-select-menu ds-pax-menu" id="paxDropdownMenu">
+                    <div class="ds-pax-row">
+                        <div>
+                            <div class="ds-pax-label">Adults</div>
+                            <div class="ds-pax-sublabel">Age 13+</div>
+                        </div>
+                        <div class="ds-pax-stepper">
+                            <button type="button" onclick="changePax('adults', -1)">−</button>
+                            <span id="adultsCount">2</span>
+                            <button type="button" onclick="changePax('adults', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="ds-pax-row">
+                        <div>
+                            <div class="ds-pax-label">Children</div>
+                            <div class="ds-pax-sublabel">Age 0–12</div>
+                        </div>
+                        <div class="ds-pax-stepper">
+                            <button type="button" onclick="changePax('children', -1)">−</button>
+                            <span id="childrenCount">0</span>
+                            <button type="button" onclick="changePax('children', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <a href="#destGrid" class="primary-button" id="filterToursBtn">
                 <div class="button-item-main">
@@ -111,6 +193,65 @@
             </a>
         </div>
     </div>
+
+    <script>
+        var pendingSeasonSelection = '';
+        var paxAdults = 2;
+        var paxChildren = 0;
+
+        function closeAllSearchDropdowns() {
+            document.querySelectorAll('.ds-custom-select-menu').forEach(function(m) { m.classList.remove('open'); });
+        }
+
+        function toggleGenericDropdown(e, menuId) {
+            e.stopPropagation();
+            var menu = document.getElementById(menuId);
+            var wasOpen = menu.classList.contains('open');
+            closeAllSearchDropdowns();
+            if (!wasOpen) menu.classList.add('open');
+        }
+
+        function selectHeroMonth(season, label) {
+            pendingSeasonSelection = season;
+            document.getElementById('monthSelectLabel').textContent = label;
+            closeAllSearchDropdowns();
+        }
+
+        function selectDestSearch(region, query, label) {
+            document.getElementById('destSelectLabel').textContent = label;
+            document.getElementById('destSearchInput').value = query;
+            document.querySelectorAll('.region-pill').forEach(function(b) { b.classList.remove('active'); });
+            var regBtn = document.querySelector('.region-pill[data-region="' + (region || 'all') + '"]');
+            if (regBtn) { regBtn.classList.add('active'); }
+            if (typeof updateGliders === 'function') updateGliders();
+            closeAllSearchDropdowns();
+            if (typeof filterCards === 'function') filterCards();
+            var target = document.getElementById('destGrid');
+            if (target) { target.scrollIntoView({ behavior: 'smooth' }); }
+        }
+
+        function changePax(type, delta) {
+            if (type === 'adults') {
+                paxAdults = Math.max(1, paxAdults + delta);
+                document.getElementById('adultsCount').textContent = paxAdults;
+            } else {
+                paxChildren = Math.max(0, paxChildren + delta);
+                document.getElementById('childrenCount').textContent = paxChildren;
+            }
+            var parts = [paxAdults + (paxAdults === 1 ? ' Adult' : ' Adults')];
+            if (paxChildren > 0) parts.push(paxChildren + (paxChildren === 1 ? ' Child' : ' Children'));
+            document.getElementById('paxSelectLabel').textContent = parts.join(', ');
+        }
+
+        document.addEventListener('click', function(e) {
+            ['destDropdownWrap', 'monthDropdownWrap', 'paxDropdownWrap'].forEach(function(id) {
+                var wrap = document.getElementById(id);
+                if (wrap && !wrap.contains(e.target)) {
+                    wrap.querySelector('.ds-custom-select-menu').classList.remove('open');
+                }
+            });
+        });
+    </script>
 
     <!-- ══════════════ DESTINATIONS GRID ══════════════ -->
     <section class="routes-section small-section bg-inner">
@@ -142,7 +283,7 @@
                      1. SOUTHEAST ASIA (data-region="southeast-asia")
                      ══════════════════════════════════════════════════════════ -->
                 <!-- Thailand -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="southeast-asia" data-season="winter">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="southeast-asia" data-season="winter">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80" alt="Thailand" class="img-fluid blur-up lazyloaded">
@@ -160,8 +301,8 @@
                             <a href="bangkok.html" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -173,7 +314,7 @@
                 </div>
 
                 <!-- Indonesia / Bali DMC -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="southeast-asia" data-season="summer">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="southeast-asia" data-season="summer">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80" alt="Indonesia / Bali DMC" class="img-fluid blur-up lazyloaded">
@@ -191,8 +332,8 @@
                             <a href="destination-detail.html?country=indonesia" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -204,7 +345,7 @@
                 </div>
 
                 <!-- Vietnam -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="southeast-asia" data-season="winter">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="southeast-asia" data-season="winter">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80" alt="Vietnam" class="img-fluid blur-up lazyloaded">
@@ -222,8 +363,8 @@
                             <a href="destination-detail.html?country=vietnam" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -238,7 +379,7 @@
                      2. ASIA & EURASIA (data-region="asia-eurasia")
                      ══════════════════════════════════════════════════════════ -->
                 <!-- Maldives -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="asia-eurasia" data-season="winter">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="asia-eurasia" data-season="winter">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" alt="Maldives" class="img-fluid blur-up lazyloaded">
@@ -256,8 +397,8 @@
                             <a href="maldives.html" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -269,7 +410,7 @@
                 </div>
 
                 <!-- Türkiye -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="asia-eurasia" data-season="summer">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="asia-eurasia" data-season="summer">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=600&q=80" alt="Türkiye" class="img-fluid blur-up lazyloaded">
@@ -287,8 +428,8 @@
                             <a href="destination-detail.html?country=turkey" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -303,7 +444,7 @@
                      3. AFRICA & ISLANDS (data-region="africa-islands")
                      ══════════════════════════════════════════════════════════ -->
                 <!-- Mauritius -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="africa-islands" data-season="summer">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="africa-islands" data-season="summer">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Mauritius" class="img-fluid blur-up lazyloaded">
@@ -321,8 +462,8 @@
                             <a href="destination-detail.html?country=mauritius" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -334,7 +475,7 @@
                 </div>
 
                 <!-- Seychelles -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="africa-islands" data-season="summer">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="africa-islands" data-season="summer">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Seychelles" class="img-fluid blur-up lazyloaded">
@@ -352,8 +493,8 @@
                             <a href="destination-detail.html?country=seychelles" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -365,7 +506,7 @@
                 </div>
 
                 <!-- Kenya -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="africa-islands" data-season="summer">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="africa-islands" data-season="summer">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" alt="Kenya" class="img-fluid blur-up lazyloaded">
@@ -383,8 +524,8 @@
                             <a href="destination-detail.html?country=kenya" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -398,7 +539,7 @@
                      4. INDIA (data-region="india")
                      ══════════════════════════════════════════════════════════ -->
                 <!-- Rajasthan -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="india" data-season="winter">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="india" data-season="winter">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80" alt="Rajasthan" class="img-fluid blur-up lazyloaded">
@@ -416,8 +557,8 @@
                             <a href="rajasthan.html" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -429,7 +570,7 @@
                 </div>
 
                 <!-- Kerala -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="india" data-season="winter">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="india" data-season="winter">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80" alt="Kerala" class="img-fluid blur-up lazyloaded">
@@ -447,8 +588,8 @@
                             <a href="destination-detail.html?state=kerala" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -460,7 +601,7 @@
                 </div>
 
                 <!-- Himachal Pradesh -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="india" data-season="summer">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="india" data-season="summer">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80" alt="Himachal Pradesh" class="img-fluid blur-up lazyloaded">
@@ -478,8 +619,8 @@
                             <a href="destination-detail.html?state=himachal" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -491,7 +632,7 @@
                 </div>
 
                 <!-- Goa -->
-                <div class="col-xl-4 col-md-6 dest-card-wrap" data-region="india" data-season="winter">
+                <div class="col-xl-3 col-md-6 dest-card-wrap" data-region="india" data-season="winter">
                     <div class="routes-box">
                         <div class="routes-img">
                             <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=600&q=80" alt="Goa" class="img-fluid blur-up lazyloaded">
@@ -509,8 +650,8 @@
                             <a href="destination-detail.html?state=goa" class="primary-button ds-btn-kinetic w-100">
                                 <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
-                                        <div class="primay-button-text">Multi-Select Activities &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
+                                        <div class="primay-button-text">Explore &amp; Plan</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper"><i class="fas fa-arrow-right button-arrow"></i></div>
@@ -554,7 +695,7 @@
                 <div class="col-lg-4">
                     <div class="footer-logo mb-3">
                         <a href="index.html">
-                            <img src="./assets/img/logo.png" alt="Roland Holidays">
+                            <img src="./assets/img/rolandholidays.png" alt="Roland Holidays">
                         </a>
                     </div>
                     <p class="ds-footer-text mb-3">
@@ -679,6 +820,12 @@
     if (filterBtn) {
         filterBtn.addEventListener('click', function(e) {
             e.preventDefault();
+            if (typeof pendingSeasonSelection !== 'undefined' && pendingSeasonSelection) {
+                document.querySelectorAll('.season-pill').forEach(function(b) { b.classList.remove('active'); });
+                var seasBtn = document.querySelector('.season-pill[data-season="' + pendingSeasonSelection + '"]');
+                if (seasBtn) { seasBtn.classList.add('active'); }
+                if (typeof updateGliders === 'function') updateGliders();
+            }
             filterCards();
             var target = document.getElementById('destGrid');
             if (target) {
@@ -692,6 +839,11 @@
         var params = new URLSearchParams(window.location.search);
         var region = params.get('region');
         var season = params.get('season');
+        var query = params.get('q');
+
+        if (query && searchInput) {
+            searchInput.value = query;
+        }
 
         if (region) {
             document.querySelectorAll('.region-pill').forEach(function(b) { b.classList.remove('active'); });
