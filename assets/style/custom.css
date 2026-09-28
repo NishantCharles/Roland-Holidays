@@ -525,6 +525,54 @@ body.nav-open {
 }
 .ds-dest-quote-stars { color: #f5b400; font-size: 13px; }
 
+/* ── Header Destinations Mega Menu ── */
+.ds-mega-menu-parent { position: relative; }
+.ds-mega-menu-caret { font-size: 10px; margin-left: 4px; transition: transform 0.2s ease; }
+.ds-mega-menu-parent.ds-mega-open .ds-mega-menu-caret { transform: rotate(180deg); }
+.ds-mega-menu {
+    display: none; position: absolute; top: 100%; left: 50%; padding-top: 20px;
+    transform: translateX(-50%); width: max-content; max-width: 90vw;
+    z-index: 200;
+}
+.ds-mega-menu-parent.ds-mega-open .ds-mega-menu { display: block; }
+.ds-mega-menu-inner {
+    display: flex; gap: 40px;
+    background: #fff; border-radius: var(--ds-radius-lg); box-shadow: var(--ds-shadow-lg);
+    padding: 28px;
+}
+.ds-mega-menu-image {
+    position: relative; flex: 0 0 220px; height: 260px; border-radius: var(--ds-radius-md);
+    background-size: cover; background-position: center; overflow: hidden;
+}
+.ds-mega-menu-image-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(13,27,32,0.9) 0%, rgba(13,27,32,0.3) 60%, rgba(13,27,32,0.1) 100%);
+}
+.ds-mega-menu-image-text { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px; }
+.ds-mega-menu-image-text h4 {
+    color: #fff; font-size: 17px; font-weight: 800; line-height: 1.3; margin-bottom: 12px;
+}
+.ds-mega-menu-image-text h4 span { color: var(--ds-color-gold); }
+.ds-mega-menu-cta {
+    font-size: 12px; font-weight: 700; color: #fff; text-decoration: none;
+    display: inline-flex; align-items: center; border-bottom: 1.5px solid rgba(255,255,255,0.4);
+    padding-bottom: 3px;
+}
+.ds-mega-menu-cta:hover { color: var(--ds-color-gold); border-color: var(--ds-color-gold); }
+.ds-mega-menu-col { flex: 0 0 auto; width: 150px; }
+.ds-mega-menu-col-title {
+    display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ds-color-primary); margin-bottom: 12px;
+}
+.ds-mega-menu-col a {
+    display: block; font-size: 14px; font-weight: 600; color: var(--ds-text-primary);
+    text-decoration: none; padding: 6px 0; transition: color 0.15s ease, transform 0.15s ease;
+}
+.ds-mega-menu-col a:hover { color: var(--ds-color-gold); transform: translateX(3px); }
+@media (max-width: 1199px) {
+    .ds-mega-menu { display: none !important; }
+}
+
 /* ── Trust Badges Section ── */
 .ds-trust-card {
     background: #fff; border-radius: var(--ds-radius-md); box-shadow: var(--ds-shadow-sm);

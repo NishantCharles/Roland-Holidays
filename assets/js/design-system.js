@@ -11,7 +11,28 @@ document.addEventListener('DOMContentLoaded', () => {
     initWebpOptimizer();
     initDestinationCardClick();
     initFloatingWhatsApp();
+    initMegaMenu();
 });
+
+/**
+ * Header Destinations Mega Menu — uses a short close-delay (instead of pure
+ * CSS :hover) so the menu doesn't disappear while the cursor is moving
+ * diagonally from the narrow nav link down into the wider menu below it.
+ */
+function initMegaMenu() {
+    document.querySelectorAll('.ds-mega-menu-parent').forEach((parent) => {
+        let closeTimer = null;
+        parent.addEventListener('mouseenter', () => {
+            if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+            parent.classList.add('ds-mega-open');
+        });
+        parent.addEventListener('mouseleave', () => {
+            closeTimer = setTimeout(() => {
+                parent.classList.remove('ds-mega-open');
+            }, 250);
+        });
+    });
+}
 
 /**
  * Site-wide Floating WhatsApp Widget
