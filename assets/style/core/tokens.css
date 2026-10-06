@@ -1,0 +1,173 @@
+/* ==========================================================================
+   ROLAND HOLIDAYS — DESIGN TOKENS
+   ==========================================================================
+   The single source of truth for every design decision on this site.
+   Colour, type, spacing, radius, shadow, motion and layering are all
+   defined here and nowhere else.
+
+   Change a brand colour here and it propagates to every page.
+   Do not hardcode a hex value, px radius or shadow anywhere else — add or
+   reuse a token instead, so the next change stays a one-line edit.
+   ========================================================================== */
+
+:root {
+    /* ----------------------------------------------------------------------
+       1. BRAND PALETTE
+       ---------------------------------------------------------------------- */
+    --ds-color-primary:          #008080;   /* teal — primary brand */
+    --ds-color-primary-hover:    #006666;
+    --ds-color-primary-electric: #008080;   /* alias, kept for existing rules */
+    --ds-color-primary-light:    rgba(0, 128, 128, 0.08);
+
+    --ds-color-gold:             #FF7F50;   /* coral accent (named gold historically) */
+    --ds-color-gold-hover:       #E86A3C;
+    --ds-color-gold-dark:        #C88E10;
+    --ds-color-gold-light:       rgba(255, 127, 80, 0.12);
+    --ds-color-yellow-brush:     var(--ds-color-gold);
+
+    --ds-color-coral:            #E53935;
+
+    --ds-color-navy:             #0D1F2D;
+    --ds-color-navy-surface:     #101A2D;
+
+    /* ----------------------------------------------------------------------
+       2. SKY / SECONDARY FAMILY
+       ---------------------------------------------------------------------- */
+    --ds-color-sky:              #7FB4D4;   /* the most-used accent on the site */
+    --ds-color-sky-deep:         #3A8AB5;
+    --ds-color-sky-mid:          #4A8FAE;
+    --ds-color-secondary:        #5A9ABF;
+
+    --ds-color-sky-100:          #C8DFED;
+    --ds-color-sky-50:           #E8F3FA;
+    --ds-color-sky-25:           #E3EEF5;
+    --ds-color-sky-light:        var(--ds-color-sky-25);  /* was referenced by custom.css but never defined */
+
+    /* ----------------------------------------------------------------------
+       3. NEUTRAL SCALE
+       ---------------------------------------------------------------------- */
+    --ds-neutral-900: #0F172A;
+    --ds-neutral-800: #1E293B;
+    --ds-neutral-700: #334155;
+    --ds-neutral-600: #475569;
+    --ds-neutral-500: #64748B;
+    --ds-neutral-400: #94A3B8;
+    --ds-neutral-300: #CBD5E1;
+    --ds-neutral-200: #E2E8F0;
+    --ds-neutral-100: #F1F5F9;
+    --ds-neutral-50:  #F8FAFC;
+    --ds-white:       #FFFFFF;
+    --ds-black:       #000000;
+
+    /* Ad-hoc grey ramp inherited from the original template. Kept at their
+       exact values so rendering is unchanged; rationalise against the slate
+       scale above when there is time to re-test every page. */
+    --ds-grey-900: #111111;
+    --ds-grey-850: #222222;
+    --ds-grey-800: #333333;
+    --ds-grey-750: #444444;
+    --ds-grey-700: #555555;
+    --ds-grey-600: #666666;
+    --ds-grey-550: #777777;
+    --ds-grey-500: #888888;
+    --ds-grey-450: #999999;
+    --ds-grey-400: #AAAAAA;
+    --ds-grey-350: #BBBBBB;
+    --ds-grey-300: #CCCCCC;
+    --ds-grey-250: #DDDDDD;
+    --ds-grey-200: #EEEEEE;
+
+    /* ----------------------------------------------------------------------
+       4. SEMANTIC COLOURS
+       ---------------------------------------------------------------------- */
+    --ds-color-success:          #22C55E;
+    --ds-color-danger:           #EF4444;
+    --ds-color-whatsapp:         #25D366;
+    --ds-color-whatsapp-hover:   #1DA851;
+
+    /* ----------------------------------------------------------------------
+       5. SURFACES, TEXT & BORDERS
+       ---------------------------------------------------------------------- */
+    --ds-bg-main:       var(--ds-neutral-50);
+    --ds-bg-card:       var(--ds-white);
+    --ds-bg-alt:        #ECF2F6;
+    --ds-bg-tint:       #EEF2F6;
+    --ds-bg-tint-warm:  #F0F4F7;
+    --ds-bg-tint-cool:  #F7FAFB;
+    --ds-bg-tint-sky:   #E8EEF3;
+
+    --ds-border-color:  var(--ds-neutral-200);
+
+    --ds-text-primary:   #2F4F4F;
+    --ds-text-secondary: var(--ds-neutral-600);
+    --ds-text-muted:     var(--ds-neutral-400);
+    --ds-text-strong:    var(--ds-neutral-800);
+    --ds-text-on-dark:   var(--ds-white);
+
+    /* ----------------------------------------------------------------------
+       6. TYPOGRAPHY
+       ---------------------------------------------------------------------- */
+    --ds-font-sans:    'Ubuntu', sans-serif;
+    --ds-font-heading: 'Ubuntu', sans-serif;
+    --ds-font-luxury:  'Ubuntu', sans-serif;
+
+    --ds-fs-xs:   0.75rem;
+    --ds-fs-sm:   0.875rem;
+    --ds-fs-base: 1rem;
+    --ds-fs-md:   1.125rem;
+    --ds-fs-lg:   1.25rem;
+    --ds-fs-xl:   1.5rem;
+    --ds-fs-2xl:  1.875rem;
+    --ds-fs-3xl:  2.25rem;
+    --ds-fs-4xl:  3rem;
+    --ds-fs-5xl:  3.75rem;
+
+    --ds-fw-light:   300;
+    --ds-fw-regular: 400;
+    --ds-fw-medium:  500;
+    --ds-fw-bold:    700;
+
+    /* ----------------------------------------------------------------------
+       7. RADIUS, SHADOW & GLASS
+       ---------------------------------------------------------------------- */
+    --ds-radius-sm:   8px;
+    --ds-radius-md:   12px;
+    --ds-radius-lg:   16px;
+    --ds-radius-pill: 999px;
+    --ds-radius-arch: 100px;
+
+    --ds-shadow-sm: 0 2px 6px rgba(13, 31, 45, 0.05);
+    --ds-shadow-md: 0 6px 18px rgba(13, 31, 45, 0.08);
+    --ds-shadow-lg: 0 14px 32px rgba(13, 31, 45, 0.12);
+
+    --ds-glass-bg:       rgba(255, 255, 255, 0.85);
+    --ds-glass-border:   1px solid rgba(255, 255, 255, 0.3);
+    --ds-glass-backdrop: blur(16px) saturate(180%);
+
+    /* ----------------------------------------------------------------------
+       8. MOTION
+       ---------------------------------------------------------------------- */
+    --ds-ease:            cubic-bezier(0.16, 1, 0.3, 1);
+    --ds-duration-fast:   0.18s;
+    --ds-duration-base:   0.35s;
+    --ds-transition-base: all var(--ds-duration-base) var(--ds-ease);
+
+    /* ----------------------------------------------------------------------
+       9. LAYERING
+       ---------------------------------------------------------------------- */
+    --ds-z-base:    1;
+    --ds-z-sticky:  100;
+    --ds-z-header:  1000;
+    --ds-z-drawer:  1050;
+    --ds-z-modal:   1100;
+    --ds-z-toast:   1200;
+    --ds-z-loader:  9999;
+}
+
+/* Honour the visitor's reduced-motion preference site-wide. */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --ds-duration-fast: 0.01ms;
+        --ds-duration-base: 0.01ms;
+    }
+}

@@ -9,7 +9,10 @@
     "build:css": "cleancss -O2 -o dist/assets/style/main.min.css assets/style/main.css",
     "build:js": "esbuild assets/js/main.js --bundle --minify --outfile=dist/assets/js/main.min.js",
     "pictures": "node tools/wrap-picture.mjs",
-    "start": "node tools/serve.mjs"
+    "start": "node tools/serve.mjs",
+    "tokenize": "node tools/tokenize-css.mjs",
+    "lint": "node tools/lint-design.mjs",
+    "smoke": "node tools/smoke.mjs"
   },
   "devDependencies": {
     "sharp": "^0.33.5"

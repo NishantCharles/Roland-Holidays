@@ -1,3 +1,10 @@
+/* Contact details come from core/config.js — never hardcode them here. */
+const RH_CONTACT = (window.ROLAND && window.ROLAND.config && window.ROLAND.config.contact) || {
+    whatsapp: '919769421051',
+    phoneDial: '+919769421051',
+};
+const RH_WA = 'https://api.whatsapp.com/send?phone=' + RH_CONTACT.whatsapp;
+
 /* ==========================================================================
    ROLAND HOLIDAYS — DESIGN SYSTEM JS ENGINE (v2.1 Refined)
    Handles: Smooth Kinetic Button Text Rolling, Arrow Badges, and Scroll Reveals
@@ -43,7 +50,7 @@ function initFloatingWhatsApp() {
 
     const link = document.createElement('a');
     link.id = 'dsFloatingWhatsApp';
-    link.href = 'https://api.whatsapp.com/send?phone=919769421051';
+    link.href = RH_WA;
     link.target = '_blank';
     link.rel = 'noopener';
     link.setAttribute('aria-label', 'Chat with us on WhatsApp');
@@ -218,10 +225,10 @@ function initMobileDrawer() {
         const drawerFooter = document.createElement('div');
         drawerFooter.className = 'ds-drawer-footer';
         drawerFooter.innerHTML = `
-            <a href="tel:+919769421051" class="ds-drawer-btn-call">
+            <a href="tel:${RH_CONTACT.phoneDial}" class="ds-drawer-btn-call">
                 <i class="fas fa-phone-alt"></i> Call Travel Desk
             </a>
-            <a href="https://api.whatsapp.com/send?phone=919769421051" target="_blank" class="ds-drawer-btn-wa">
+            <a href="${RH_WA}" target="_blank" class="ds-drawer-btn-wa">
                 <i class="fab fa-whatsapp"></i> WhatsApp Support
             </a>
             <p class="ds-drawer-badge">
