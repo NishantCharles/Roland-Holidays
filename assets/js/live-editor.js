@@ -2,6 +2,18 @@
     // RLE V3 - PREMIUM REDESIGN
     const isAdmin = localStorage.getItem('isAdmin') === 'true';
 
+    // Configuration
+    const STORAGE_KEYS = {
+        TEXT: 'rle_text_',
+        IMG: 'rle_img_',
+        BG: 'rle_bg_',
+        VIDEO: 'rle_video_'
+    };
+
+    // Page scope for storage keys
+    const pageKey = document.body.getAttribute('data-page-key') || window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+
+
     // Always load saved content first
     window.addEventListener('DOMContentLoaded', () => {
         loadAllSavedEdits();
@@ -12,14 +24,6 @@
 
     let editModeActive = false;
     let activeModal = null;
-
-    // Configuration
-    const STORAGE_KEYS = {
-        TEXT: 'rle_text_',
-        IMG: 'rle_img_',
-        BG: 'rle_bg_',
-        VIDEO: 'rle_video_'
-    };
 
     // Format any video URL to its embed version (Privacy Enhanced)
     function formatVideoUrl(url) {
@@ -56,7 +60,6 @@
         return url;
     }
 
-    const pageKey = document.body.getAttribute('data-page-key') || window.location.pathname.split('/').pop().replace('.html', '') || 'index';
 
     // -- UTILS --
     function getAutoId(el) {

@@ -54,7 +54,11 @@
                     <div class="menu d-flex align-items-center justify-content-between position-relative">
                         <div class="brand-logo">
                             <a href="index.html">
-                                <img src="./assets/img/rolandholidays.png" alt="Roland Holidays" class="img-fluid blur-up lazyloaded">
+                                <picture>
+                                    <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
+                                    <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
+                                    <img src="./assets/img/rolandholidays.png" alt="Roland Holidays" class="img-fluid blur-up lazyloaded">
+                                </picture>
                             </a>
                         </div>
                         <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
@@ -131,7 +135,11 @@
     <section class="breadcrumb-section bg-size blur-up lazyloaded"
         data-bg-editable="true" data-bg-id="test_breadcrumb_bg"
         style="background: linear-gradient(rgb(0 0 0 / 20%), rgb(0 0 0 / 13%)), url(assets/img/l5.jpg); background-size: cover; background-position: bottom; background-repeat: no-repeat;">
-        <!-- <img src="./assets/img/8.jpg" class="img-fluid blur-up lazyload bg-img" alt="" style="display:none;" data-img-id="test_breadcrumb_fallback"> -->
+        <!-- <picture>
+    <source srcset="./assets/img/8.avif" type="image/avif">
+    <source srcset="./assets/img/8.webp" type="image/webp">
+    <img src="./assets/img/8.jpg" class="img-fluid blur-up lazyload bg-img" alt="" style="display:none;" data-img-id="test_breadcrumb_fallback">
+</picture> -->
         <div class="breadcrumb-content overlay-black text-center">
             <div>
                 <h1 class="ds-page-title mb-0" data-editable="true" data-edit-id="test_page_title">Partner Stories &amp; Testimonials</h1>
@@ -166,7 +174,7 @@
                     <div class="video-testimonial-card position-relative rounded-4 overflow-hidden shadow-sm bg-white border">
                         <span class="featured-ribbon position-absolute top-3 start-3 bg-warning text-dark px-3 py-1 rounded-pill font-weight-bold" style="z-index: 5; font-size: 12px;"><i class="fas fa-star me-1"></i> Featured</span>
                         <div class="position-relative overflow-hidden ds-video-test-wrap">
-                            <video class="w-100 h-100 object-fit-cover" controls playsinline poster="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80&fm=webp">
+                            <video class="w-100 h-100 object-fit-cover" controls playsinline poster="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80&fm=webp" preload="none">
                                 <source src="./assets/img/sea.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -189,7 +197,7 @@
                 <div class="col-xl-4 col-lg-6" data-category="support visa">
                     <div class="video-testimonial-card position-relative rounded-4 overflow-hidden shadow-sm bg-white border">
                         <div class="position-relative overflow-hidden ds-video-test-wrap">
-                            <video class="w-100 h-100 object-fit-cover" controls playsinline poster="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80&fm=webp">
+                            <video class="w-100 h-100 object-fit-cover" controls playsinline poster="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80&fm=webp" preload="none">
                                 <source src="./assets/img/sea3.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -212,7 +220,7 @@
                 <div class="col-xl-4 col-lg-6" data-category="luxury rates">
                     <div class="video-testimonial-card position-relative rounded-4 overflow-hidden shadow-sm bg-white border">
                         <div class="position-relative overflow-hidden ds-video-test-wrap">
-                            <video class="w-100 h-100 object-fit-cover" controls playsinline poster="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80&fm=webp">
+                            <video class="w-100 h-100 object-fit-cover" controls playsinline poster="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80&fm=webp" preload="none">
                                 <source src="./assets/img/sea2.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -389,7 +397,11 @@
                 <div class="col-lg-4">
                     <div class="footer-logo mb-3">
                         <a href="index.html">
-                            <img src="./assets/img/rolandholidays.png" alt="Roland Holidays">
+                            <picture>
+                                <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
+                                <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
+                                <img src="./assets/img/rolandholidays.png" alt="Roland Holidays">
+                            </picture>
                         </a>
                     </div>
                     <p class="ds-footer-text mb-3">
@@ -449,9 +461,7 @@
     <script src="./assets/js/nav.js"></script>
 
     <!-- Theme js -->
-    <script src="./assets/js/snow.js"></script>
-
-    <!-- Toastify & Live Editor Scripts -->
+<!-- Toastify & Live Editor Scripts -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="./assets/js/live-editor.js"></script>
 
