@@ -107,3 +107,16 @@ doing as its own change, with a visual pass over the affected pages.
 Several pages load photographs directly from Unsplash rather than from
 `assets/img`. That is an external dependency on every page load, and the
 licensing should be confirmed before the site goes live.
+
+### Why there is no minification step
+
+The site ships ~1 MB of unminified CSS, which sounds bad but gzips to
+127 KB — and GitHub Pages gzips automatically. Minifying would save roughly
+30 KB more while introducing a build step someone has to remember to run
+before every deploy. Not a good trade here. Revisit it if a bundler is
+added for other reasons.
+
+`assets/style/color5.css` (283 KB raw, 34 KB gzipped) is a leftover theme
+file from the original template and is probably mostly dead. Auditing what
+it actually contributes is worth doing, but it needs a careful pass over
+every page.

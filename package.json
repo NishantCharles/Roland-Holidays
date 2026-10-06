@@ -4,12 +4,9 @@
   "description": "Roland Holidays — travel agency website",
   "private": true,
   "scripts": {
-    "images": "node tools/optimize-images.mjs",
-    "build": "npm run build:css && npm run build:js",
-    "build:css": "cleancss -O2 -o dist/assets/style/main.min.css assets/style/main.css",
-    "build:js": "esbuild assets/js/main.js --bundle --minify --outfile=dist/assets/js/main.min.js",
-    "pictures": "node tools/wrap-picture.mjs",
     "start": "node tools/serve.mjs",
+    "images": "node tools/optimize-images.mjs",
+    "pictures": "node tools/wrap-picture.mjs",
     "tokenize": "node tools/tokenize-css.mjs",
     "lint": "node tools/lint-design.mjs",
     "smoke": "node tools/smoke.mjs"
