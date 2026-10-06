@@ -1,0 +1,15 @@
+{
+  "name": "roland-holidays",
+  "version": "1.0.0",
+  "description": "Roland Holidays — travel agency website",
+  "private": true,
+  "scripts": {
+    "images": "node tools/optimize-images.mjs",
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "cleancss -O2 -o dist/assets/style/main.min.css assets/style/main.css",
+    "build:js": "esbuild assets/js/main.js --bundle --minify --outfile=dist/assets/js/main.min.js"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}
