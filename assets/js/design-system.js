@@ -12,7 +12,43 @@ document.addEventListener('DOMContentLoaded', () => {
     initDestinationCardClick();
     initFloatingWhatsApp();
     initMegaMenu();
+    initHeroSlideshow();
 });
+
+function initHeroSlideshow() {
+    const slides = document.querySelectorAll('.vhero-slide');
+    if (slides.length < 2) return;
+    const placeEl = document.getElementById('vheroPlace');
+    const dotsWrap = document.getElementById('vheroDots');
+    let current = 0;
+    let timer = null;
+
+    const dots = Array.from(slides).map((slide, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', 'Show ' + slide.dataset.place);
+        dot.addEventListener('click', () => { show(i); restart(); });
+        if (dotsWrap) dotsWrap.appendChild(dot);
+        return dot;
+    });
+
+    function show(i) {
+        slides[current].classList.remove('is-active');
+        dots[current].classList.remove('is-active');
+        current = i;
+        slides[current].classList.add('is-active');
+        dots[current].classList.add('is-active');
+        if (placeEl) placeEl.textContent = slides[current].dataset.place;
+    }
+
+    function restart() {
+        clearInterval(timer);
+        timer = setInterval(() => show((current + 1) % slides.length), 5000);
+    }
+
+    dots[0].classList.add('is-active');
+    restart();
+}
 
 /**
  * Header Destinations Mega Menu — uses a short close-delay (instead of pure

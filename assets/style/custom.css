@@ -432,9 +432,14 @@ body.nav-open {
 }
 
 /* ── Seasonal Availability Banner ── */
+/* Full-width glass strip along the bottom edge of the hero photo (same glass as .ds-subpage-breadcrumb) */
 .ds-season-banner {
-    background: linear-gradient(90deg, var(--ds-color-primary), var(--ds-color-primary-hover));
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
     color: #fff; padding: 10px 0; font-size: 13px; font-weight: 600;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
 }
 .ds-season-banner .container {
     display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px;
@@ -442,8 +447,15 @@ body.nav-open {
 }
 .ds-season-banner-sep { opacity: 0.6; }
 .ds-season-banner-urgent {
-    color: #2F1400; font-weight: 800; background: var(--ds-color-gold);
+    color: #fff; font-weight: 700; background: rgba(255, 122, 69, 0.85);
     padding: 4px 12px; border-radius: 20px; display: inline-flex; align-items: center;
+    text-shadow: none;
+}
+@media (max-width: 767px) {
+    .ds-season-banner { padding: 8px 0; font-size: 11px; }
+    .ds-season-banner .container { gap: 4px 6px; }
+    .ds-season-banner-sep { display: none; }
+    .ds-season-banner-urgent { padding: 3px 10px; }
 }
 
 /* ── Inclusions & Exclusions Cards ── */
@@ -624,46 +636,74 @@ body.nav-open {
 }
 .ds-input-light:focus { border-color: var(--ds-color-primary); background: #fff; box-shadow: 0 0 0 3px rgba(0,128,128,0.12); }
 
+/* ── Month pages: take-me-there link ── */
+/* Rectangular outline button for card CTAs (India/month/state cards) — "EXPLORE TRIP" style */
+.ds-btn-card-cta {
+    min-height: 38px; padding: 4px 4px 4px 16px; gap: 10px; align-self: flex-start;
+    border-radius: var(--ds-radius-pill); background: transparent; border: 1.5px solid var(--ds-text-primary);
+    box-shadow: none;
+}
+.ds-btn-card-cta .button-text-pill { height: 18px; }
+.ds-btn-card-cta .primay-button-text { font-size: 13px; height: 18px; line-height: 18px; text-transform: uppercase; letter-spacing: 0.05em; }
+.ds-btn-card-cta:hover .primay-button-text { transform: translateY(-18px); }
+.ds-btn-card-cta .button-arrow-pill { width: 28px; height: 28px; border-radius: 50%; }
+.ds-btn-card-cta .button-arrow { font-size: 11px; }
+.ds-btn-card-cta .button-animated-color { border-radius: var(--ds-radius-pill); }
+.ds-btn-card-cta:hover { border-color: var(--ds-color-primary); }
+
+
+/* Black Tomato style alternating photo/text layout (month and India pages) */
+.ds-mosaic-layout { display: flex; flex-direction: column; gap: 24px; }
+.ds-mosaic-featured { display: flex; background: #f6f7f8; }
+.ds-mosaic-featured .ds-mosaic-img { flex: 0 0 58%; width: 58%; height: 380px; }
+.ds-mosaic-featured .ds-mosaic-text { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 48px; }
+.ds-mosaic-featured-reverse { flex-direction: row-reverse; }
+.ds-mosaic-pair { display: flex; gap: 24px; }
+.ds-mosaic-card { flex: 1; display: flex; flex-direction: column; background: #f6f7f8; }
+.ds-mosaic-card .ds-mosaic-img { width: 100%; height: 280px; }
+.ds-mosaic-card .ds-mosaic-text { flex: 1; padding: 24px 28px 28px; }
+.ds-mosaic-img { display: block; object-fit: cover; }
+.ds-mosaic-name { font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ds-text-primary); margin-bottom: 10px; }
+.ds-mosaic-desc { font-size: 14px; line-height: 1.7; color: var(--ds-text-muted); margin-bottom: 14px; }
+.ds-mosaic-img { transition: transform 0.6s ease, filter 0.6s ease; }
+.ds-mosaic-featured, .ds-mosaic-card { overflow: hidden; }
+.ds-mosaic-featured:hover .ds-mosaic-img, .ds-mosaic-card:hover .ds-mosaic-img { filter: saturate(1.15); }
+@media (max-width: 767px) {
+    .ds-mosaic-featured, .ds-mosaic-featured-reverse { flex-direction: column; }
+    .ds-mosaic-featured .ds-mosaic-img { width: 100%; flex-basis: auto; height: 240px; }
+    .ds-mosaic-featured .ds-mosaic-text { padding: 24px; }
+    .ds-mosaic-pair { flex-direction: column; }
+    .ds-mosaic-card .ds-mosaic-img { height: 240px; }
+    .ds-mosaic-card .ds-mosaic-text { padding: 24px; }
+}
+
+.ds-city-days {
+    display: inline-block; margin-left: 6px; font-size: 11px; font-weight: 600; color: var(--ds-color-primary);
+    background: rgba(0, 128, 128, 0.08); padding: 2px 8px; border-radius: 20px; vertical-align: middle;
+}
+
+
 /* ── Plan By Month Section ── */
-.ds-month-season-pill {
-    padding: 7px 18px; border-radius: 30px;
-    border: 1.5px solid #e3eef5; background: #ffffff;
-    font-size: 12px; font-weight: 700; color: #666;
-    cursor: pointer; transition: all 0.22s ease;
-}
-.ds-month-season-pill:hover { border-color: var(--ds-color-primary); color: var(--ds-color-primary); background: var(--ds-color-primary-light); }
-.ds-month-season-pill.active {
-    background: var(--ds-color-primary); color: #fff; border-color: var(--ds-color-primary);
-    box-shadow: 0 4px 14px rgba(0,128,128,0.3);
-}
 .ds-month-card {
-    position: relative; display: block; height: 260px; border-radius: var(--ds-radius-md);
+    position: relative; display: block; aspect-ratio: 3 / 4; width: 100%;
     overflow: hidden; background-size: cover; background-position: center;
-    box-shadow: var(--ds-shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 4px;
 }
-.ds-month-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: var(--ds-shadow-lg); }
 .ds-month-card-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(15, 25, 30, 0.92) 0%, rgba(15, 25, 30, 0.55) 45%, rgba(15, 25, 30, 0.05) 75%);
+    position: absolute; inset: 0; background: rgba(0,0,0,0.25);
+    transition: background 0.3s ease;
 }
+.ds-month-card:hover .ds-month-card-overlay { background: rgba(0,0,0,0.5); }
 .ds-month-card-text {
-    position: absolute; left: 0; right: 0; bottom: 0; padding: 16px; text-align: left;
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
 }
-.ds-month-card-tag {
-    display: block; font-size: 10.5px; font-weight: 800; color: var(--ds-color-gold);
-    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+.ds-month-card-name {
+    font-size: 15px; font-weight: 700; color: #fff; text-transform: uppercase;
+    letter-spacing: 0.12em; text-shadow: 0 1px 6px rgba(0,0,0,0.5);
 }
-.ds-month-card-text h6 {
-    font-size: 14px; font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 4px;
+@media (max-width: 767px) {
+    .ds-month-card-name { font-size: 13px; letter-spacing: 0.08em; }
 }
-.ds-month-card-dest {
-    display: block; font-size: 11.5px; color: rgba(255,255,255,0.75); margin-bottom: 8px;
-}
-.ds-month-explore {
-    font-size: 12px; font-weight: 700; color: #fff; text-decoration: none;
-    display: inline-flex; align-items: center;
-}
-.ds-month-explore:hover { color: var(--ds-color-gold); }
 
 .filter-label-dark {
     font-size: 11px; font-weight: 800; color: #aaa;
@@ -2566,8 +2606,8 @@ width: 20px; height: 20px; cursor: pointer; }
 /* ── Header ── */    
 header.tour-header { position: sticky !important; top: 0; left: 0; right: 0; z-index: 1000 !important; background: #FFFFFF !important; border-bottom: 1px solid #E2E8F0 !important; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important; }
 header.tour-header .container { max-width: 100%; padding: 0 48px; }
-header .menu { display: flex; align-items: center; justify-content: space-between; padding: 20px 0 !important; }
-header .brand-logo img { max-height: 52px !important; height: 52px !important; width: auto !important; }
+header .menu { display: flex; align-items: center; justify-content: space-between; padding: 5px 0 !important; }
+header .brand-logo img { max-height: 40px !important; height: 40px !important; width: auto !important; }
 header .brand-logo { margin-right: 24px; }
 header .main-navbar { flex: 1; display: flex; justify-content: center; }
 header .main-navbar .nav-menu > li { margin-right: 0; }
@@ -2582,11 +2622,11 @@ header .main-navbar .nav-menu > li { margin-right: 0; }
 @media (max-width: 1199px) {
     .header-cta-btn { display: none !important; }
 }
-header .main-navbar .nav-menu > li > a { color: #1E293B !important; font-size: 16px !important; font-weight: 600 !important; letter-spacing: 0.01em; padding: 10px 0; position: relative; transition: color 0.25s ease; font-family: 'Ubuntu', sans-serif !important; text-decoration: none !important; }
+header .main-navbar .nav-menu > li > a { color: #1E293B !important; font-size: 13px !important; font-weight: 700 !important; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 0; position: relative; transition: color 0.25s ease; font-family: 'Ubuntu', sans-serif !important; text-decoration: none !important; }
 header .main-navbar .nav-menu > li > a::before,
 header .main-navbar .nav-menu > li > a::after { display: none !important; content: none !important; }
 header .main-navbar .nav-menu > li > a:hover { color: #008080 !important; text-decoration: none !important; }
-header .main-navbar .nav-menu > li > a.active { color: #008080 !important; border-bottom: 3px solid #FF7F50 !important; }
+header .main-navbar .nav-menu > li > a.active { color: #008080 !important; border-bottom: 2px solid #FF7F50 !important; }
 header.tour-header.sticky { position: fixed; top: 0; background: #FFFFFF !important; box-shadow: 0 4px 20px rgba(0,0,0,0.06) !important;
      /* animation: slideDown 0.3s ease; */
      }
@@ -2668,8 +2708,76 @@ header .main-navbar .nav-menu > li .nav-submenu li a .drop-icon {
 .vhero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgb(5 15 40 / 42%) 0%, rgb(5 15 40 / 54%) 100%);
+    background:
+        radial-gradient(ellipse 55% 45% at 50% 52%, rgb(5 15 40 / 38%) 0%, rgb(5 15 40 / 0%) 100%),
+        linear-gradient(to bottom, rgb(5 15 40 / 30%) 0%, rgb(5 15 40 / 22%) 45%, rgb(5 15 40 / 55%) 100%);
     z-index: 1;
+}
+.vhero-sub.text-white-50 {
+    color: rgba(255, 255, 255, 0.92) !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+.vhero-eyebrow { text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5); }
+.vhero-slide {
+    opacity: 0;
+    transition: opacity 1.4s ease;
+}
+.vhero-slide.is-active {
+    opacity: 1;
+    animation: vheroKenBurns 7s ease-out both;
+}
+@keyframes vheroKenBurns {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+}
+.vhero-place {
+    position: absolute;
+    left: 32px;
+    bottom: 28px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+.vhero-place i { color: #FF7F50; }
+.vhero-slide-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    gap: 10px;
+}
+.vhero-slide-dots button {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+.vhero-slide-dots button.is-active {
+    width: 28px;
+    background: #fff;
+}
+@media (max-width: 767px) {
+    .vhero-place { left: 16px; bottom: 64px; font-size: 12px; padding: 6px 12px; }
+    .vhero-slide-dots { bottom: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .vhero-slide.is-active { animation: none; }
 }
 .vhero-content {
     position: relative;
@@ -2938,6 +3046,18 @@ header .main-navbar .nav-menu > li .nav-submenu li a .drop-icon {
 .routes-box:hover .ds-btn-kinetic .button-arrow-pill .button-arrow {
     color: #008080 !important;
 }
+
+/* White kinetic button with WhatsApp-green icon and hover fill */
+.ds-btn-kinetic-wa .button-arrow-pill { background-color: #25D366; color: #FFFFFF; }
+.ds-btn-kinetic-wa .button-animated-color { background-color: #25D366; }
+.ds-btn-kinetic-wa:hover .button-arrow-pill { background-color: #FFFFFF; color: #1DA851; }
+
+/* WhatsApp-green variant of the card kinetic button (state city cards) */
+.routes-box .ds-btn-wa-card .button-arrow-pill { background-color: #25D366 !important; }
+.routes-box .ds-btn-wa-card .button-animated-color { background-color: #25D366; }
+.routes-box:hover .ds-btn-wa-card { border-color: rgba(37, 211, 102, 0.5); }
+.routes-box:hover .ds-btn-wa-card .button-arrow-pill { background-color: #FFFFFF !important; }
+.routes-box:hover .ds-btn-wa-card .button-arrow-pill .button-arrow { color: #25D366 !important; }
 
 /* ══════════════ MASTER COMPREHENSIVE SECTION BREATHING SPACE ══════════════ */
 .py-section,
