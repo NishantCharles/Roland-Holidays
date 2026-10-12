@@ -48,7 +48,11 @@
                                 <picture>
                                     <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
                                     <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
-                                    <img src="./assets/img/rolandholidays.png" alt="Roland Holidays" class="img-fluid blur-up lazyloaded">
+                                    <picture>
+                                        <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
+                                        <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
+                                        <img src="./assets/img/rolandholidays.png" alt="Roland Holidays" class="img-fluid blur-up lazyloaded">
+                                    </picture>
                                 </picture>
                             </a>
                         </div>
@@ -130,7 +134,11 @@
         <!-- <picture>
     <source srcset="./assets/img/inner-bg.avif" type="image/avif">
     <source srcset="./assets/img/inner-bg.webp" type="image/webp">
-    <img src="./assets/img/inner-bg.jpg" class="img-fluid blur-up lazyload bg-img" alt="" style="display:none;" data-img-id="dest_detail_hero_fallback">
+    <picture>
+        <source srcset="./assets/img/inner-bg.avif" type="image/avif">
+        <source srcset="./assets/img/inner-bg.webp" type="image/webp">
+        <img src="./assets/img/inner-bg.jpg" class="img-fluid blur-up lazyload bg-img" alt="" style="display:none;" data-img-id="dest_detail_hero_fallback">
+    </picture>
 </picture> -->
         <div class="breadcrumb-content overlay-black text-center">
             <div>
@@ -144,19 +152,16 @@
                 </ul>
             </div>
         </div>
+        <!-- Seasonal availability (sits on the hero photo) -->
+        <div class="ds-season-banner">
+            <div class="container">
+                <span>Best Time to Visit: November – April</span>
+                <span class="ds-season-banner-sep">&middot;</span>
+                <span class="ds-season-banner-urgent">Limited seats for peak season — enquire now</span>
+            </div>
+        </div>
     </section>
     <!-- BREADCRUMB END -->
-
-
-    <!-- ══════════════ SEASONAL AVAILABILITY BANNER ══════════════ -->
-    <div class="ds-season-banner">
-        <div class="container">
-            <span><i class="fas fa-sun me-2"></i>Best Time to Visit: November – April</span>
-            <span class="ds-season-banner-sep">&middot;</span>
-            <span class="ds-season-banner-urgent"><i class="fas fa-bolt me-1"></i>Limited seats for peak season — enquire now</span>
-        </div>
-    </div>
-    <!-- SEASONAL AVAILABILITY BANNER END -->
 
     
 
@@ -240,7 +245,11 @@
                                         <picture>
                                             <source srcset="./assets/img/mld_malecity_1787564045743.avif" type="image/avif">
                                             <source srcset="./assets/img/mld_malecity_1787564045743.webp" type="image/webp">
-                                            <img class="ds-spot-img" src="./assets/img/mld_malecity_1787564045743.jpg" alt="Male City">
+                                            <picture>
+                                                <source srcset="./assets/img/mld_malecity_1787564045743.avif" type="image/avif">
+                                                <source srcset="./assets/img/mld_malecity_1787564045743.webp" type="image/webp">
+                                                <img class="ds-spot-img" src="./assets/img/mld_malecity_1787564045743.jpg" alt="Male City">
+                                            </picture>
                                         </picture>
                                         <div class="ds-spot-content">
                                             <div class="ds-spot-checkbox"><i class="fas fa-check"></i></div>
@@ -287,7 +296,11 @@
                                         <picture>
                                             <source srcset="./assets/img/mld_dolphin_1787564059266.avif" type="image/avif">
                                             <source srcset="./assets/img/mld_dolphin_1787564059266.webp" type="image/webp">
-                                            <img class="ds-spot-img" src="./assets/img/mld_dolphin_1787564059266.jpg" alt="Dolphin Cruise">
+                                            <picture>
+                                                <source srcset="./assets/img/mld_dolphin_1787564059266.avif" type="image/avif">
+                                                <source srcset="./assets/img/mld_dolphin_1787564059266.webp" type="image/webp">
+                                                <img class="ds-spot-img" src="./assets/img/mld_dolphin_1787564059266.jpg" alt="Dolphin Cruise">
+                                            </picture>
                                         </picture>
                                         <div class="ds-spot-content">
                                             <div class="ds-spot-checkbox"><i class="fas fa-check"></i></div>
@@ -304,7 +317,11 @@
                                         <picture>
                                             <source srcset="./assets/img/mld_dining_1787564074337.avif" type="image/avif">
                                             <source srcset="./assets/img/mld_dining_1787564074337.webp" type="image/webp">
-                                            <img class="ds-spot-img" src="./assets/img/mld_dining_1787564074337.jpg" alt="Overwater Dining">
+                                            <picture>
+                                                <source srcset="./assets/img/mld_dining_1787564074337.avif" type="image/avif">
+                                                <source srcset="./assets/img/mld_dining_1787564074337.webp" type="image/webp">
+                                                <img class="ds-spot-img" src="./assets/img/mld_dining_1787564074337.jpg" alt="Overwater Dining">
+                                            </picture>
                                         </picture>
                                         <div class="ds-spot-content">
                                             <div class="ds-spot-checkbox"><i class="fas fa-check"></i></div>
@@ -360,11 +377,11 @@
 
                         <!-- Button integrated at parent card bottom -->
                         <div class="text-center mt-4 pt-3">
-                            <button type="button" onclick="sendCustomPlanToWhatsApp()" class="primary-button ds-btn-whatsapp w-100" style="padding: 18px 16px; max-width: 400px; margin: 0 auto;">
-                                <div class="button-item-main justify-content-center">
+                            <button type="button" onclick="sendCustomPlanToWhatsApp()" class="primary-button ds-btn-kinetic-wa">
+                                <div class="button-item-main">
                                     <div class="button-text-pill">
-                                        <div class="primay-button-text" style="font-size: 16px;">Send Custom Plan to WhatsApp</div>
-                                        <div class="primay-button-text" style="font-size: 16px;">Send Custom Plan to WhatsApp</div>
+                                        <div class="primay-button-text">Send Custom Plan to WhatsApp</div>
+                                        <div class="primay-button-text">Send Custom Plan to WhatsApp</div>
                                     </div>
                                     <div class="button-arrow-pill">
                                         <div class="arrow-wrapper">
@@ -450,9 +467,9 @@
 
                     <!-- ══════ HOLIDAYS ══════ -->
                     <div id="holidays" class="mb-5 pt-2" style="display:none;">
-                        <div class="title-3 text-center mb-4">
-                            <span class="title-label">Top Packages</span>
-                            <h2>India <span style="color:#1E4FA3;">Holidays</span></h2>
+                        <div class="text-center mb-4">
+                            <span class="section-tag mb-1">Top Packages</span>
+                            <h2 class="ds-heading-3xl mb-2">India Holidays</h2>
                         </div>
 
                         <!-- Season Toggle -->
@@ -822,7 +839,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    <button type="button" onclick="requestFullItinerary()" class="primary-button ds-btn-whatsapp d-inline-flex">
+                    <button type="button" onclick="requestFullItinerary()" class="primary-button ds-btn-kinetic-wa d-inline-flex">
                         <div class="button-item-main">
                             <div class="button-text-pill">
                                 <div class="primay-button-text">Send via WhatsApp</div>
@@ -923,7 +940,11 @@
                             <picture>
                                 <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
                                 <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
-                                <img src="./assets/img/rolandholidays.png" alt="Roland Holidays">
+                                <picture>
+                                    <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
+                                    <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
+                                    <img src="./assets/img/rolandholidays.png" alt="Roland Holidays">
+                                </picture>
                             </picture>
                         </a>
                     </div>
