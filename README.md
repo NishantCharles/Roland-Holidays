@@ -85,63 +85,26 @@ later only means setting `page:` on that record.
 
 ### Images
 
-21 destinations have a verified Unsplash photo. The other 50 render a branded
-gradient panel carrying the destination name — deliberately, because inventing
-Unsplash ids would produce 404s. Set `img` on a record to upgrade its card;
-nothing else needs to change.
+Every destination and every spot has a real Unsplash photo — 76 heroes and
+302 unique spot images, each verified to load. They were harvested from
+Unsplash's search API filtered to **free** photos only: results on
+`plus.unsplash.com` with a `premium_photo-` prefix are Unsplash+ and were
+excluded, which is why an earlier pass produced 404s.
 
-### Regenerating
+To change one, edit `img` on the record in `data/destinations.js` or
+`data/spots.js`. The card, hero and gallery all follow. The gradient
+fallback still exists for anything added later without a photo.
 
-`january.html` is the template. After editing it:
+### The "Best Time to Visit" band
 
-```bash
-npm run months     # rebuilds all twelve from january.html
-```
+Shown only where it says something true:
 
-Each page gets its own title, meta description and canonical URL, since these
-are the SEO surface for "where to travel in <month>". `month-detail.html` is
-now a `noindex` redirect shim so old `?month=` links keep working.
-
-## Destination pages
-
-Every destination in the month data has its own page with an itinerary
-builder: pick places, set pax, hotel class and dates, and the plan goes to
-Roland Holidays on WhatsApp.
-
-### Where the content lives
-
-| File | Holds |
+| Page | Band |
 |---|---|
-| `assets/js/data/destinations.js` | One record per destination — name, type, parent, image, page. |
-| `assets/js/data/spots.js` | The selectable places per destination, with stay length and what each covers. |
-| `assets/js/india-states.js` | India's states, which carry extra fields `india.html` needs. |
-| `assets/js/destination-spots.js` | Renders the builder and the gallery for any destination. |
-
-### Regenerating
-
-Three generators, all idempotent — running them repeatedly produces
-byte-identical output:
-
-```bash
-npm run states          # the 8 India states, from rajasthan.html
-npm run destinations    # every other destination, from rajasthan.html
-npm run months          # the 12 month pages, from january.html
-```
-
-`rajasthan.html` and `january.html` are both template **and** output, so each
-generator strips what the previous run injected (page slug, canonical link,
-script tags) before writing. Edit a template and re-run to roll the change
-across every page.
-
-### Images
-
-21 destinations have a verified Unsplash photo. The rest render a branded
-gradient panel carrying the name — inventing Unsplash ids would produce 404s.
-A destination with no spot photography hides its gallery section and tab
-rather than showing an empty shell.
-
-Set `img` on a record or a spot and the card, hero and gallery upgrade
-automatically. Nothing else needs changing.
+| Month pages | Removed — the month is the page |
+| Destination pages | The months we actually recommend it for, derived from `months.js` |
+| India state pages | Their own season range |
+| Destinations with no month data | Removed |
 
 ### Legacy URLs
 

@@ -58,6 +58,23 @@ const emptyGallery = (html) => {
     return lines.join('\n');
 };
 
+/** Remove the season band (a div plus its inner container), depth-aware. */
+const stripSeasonBand = (html) => {
+    const lines = html.split('\n');
+    const start = lines.findIndex((l) => l.includes('class="ds-season-banner"'));
+    if (start === -1) return html;
+    let depth = 0, end = -1;
+    for (let i = start; i < lines.length; i++) {
+        depth += (lines[i].match(/<div\b/g) || []).length - (lines[i].match(/<\/div>/g) || []).length;
+        if (i > start && depth <= 0) { end = i; break; }
+    }
+    if (end === -1) return html;
+    // take the preceding comment line with it
+    const from = (lines[start - 1] || '').includes('Seasonal availability') ? start - 1 : start;
+    lines.splice(from, end - from + 1);
+    return lines.join('\n');
+};
+
 const build = async () => {
     const destinations = await evalFile('assets/js/data/destinations.js', 'ROLAND_DESTINATIONS');
     const spots        = await evalFile('assets/js/data/spots.js', 'ROLAND_SPOTS');
@@ -103,6 +120,20 @@ const build = async () => {
     // Drop any canonical the previous run baked into the template.
     base = base.replace(/\s*<link rel="canonical"[^>]*>/g, '');
 
+    // Which months we recommend each destination for — this is what makes the
+    // "Best Time to Visit" band real rather than filler.
+    const months = await evalFile('assets/js/data/months.js', 'ROLAND_MONTHS');
+    const monthsFor = {};
+    for (const key of months.order) {
+        const m = months[key];
+        const lists = m.groups ? m.groups.map((g) => g.list) : [m.list];
+        for (const list of lists) {
+            for (const entry of list) {
+                (monthsFor[entry.slug] = monthsFor[entry.slug] || []).push(m.name);
+            }
+        }
+    }
+
     const targets = Object.keys(destinations).filter(
         (slug) => slug !== 'get' && spots[slug] && !stateSlugs.has(slug) && !BESPOKE.has(slug)
     );
@@ -112,6 +143,7 @@ const build = async () => {
         const d        = destinations[slug];
         const list     = spots[slug];
         const parent   = d.parent ? destinations[d.parent] : null;
+        const bestMonths = monthsFor[slug] || [];
         const heroImg  = d.img
             ? `https://images.unsplash.com/${d.img}?auto=format&fit=crop&w=1920&q=80`
             : null;
@@ -138,7 +170,9 @@ const build = async () => {
                      parent ? `<li><a href="${parent.page || parent.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.html'}">${parent.name}</a></li>`
                             : '<li><a href="destinations.html">Destinations</a></li>')
             .replace(/<span>Best Time to Visit: [^<]*<\/span>/,
-                     '<span>Best Time to Visit: Year-round — ask us for the ideal month</span>')
+                     bestMonths.length
+                         ? `<span>Best Time to Visit: ${bestMonths.join(', ')}</span>`
+                         : '<span>Best Time to Visit: ask us for the ideal month</span>')
             .replace(/<h3 class="section-h3-bold">India Photo Gallery<\/h3>/,
                      `<h3 class="section-h3-bold">${d.name} Photo Gallery</h3>`)
             .replace(/<p>A visual showcase of India's[^<]*<\/p>/,
@@ -148,6 +182,12 @@ const build = async () => {
             .replace(/<p>"The heritage trail through Rajasthan's[^<]*<\/p>/,
                      `<p>"Our ${d.name} trip was planned around exactly what we wanted to see — nothing rushed, nothing wasted."</p>`)
             .replace(/<body([^>]*)data-page-key="[a-z_-]+"/, `<body$1data-page-key="${slug}"`);
+
+        // No months recommended (a parent country, or one the month data does
+        // not cover) — drop the band rather than show filler.
+        if (!bestMonths.length) {
+            out = stripSeasonBand(out);
+        }
 
         // The slug the renderers read.
         out = out.replace(/(<meta name="author"[^>]*>)/,

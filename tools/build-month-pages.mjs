@@ -43,6 +43,23 @@ const emptyMosaic = (html) => {
     return lines.join('\n');
 };
 
+/** Remove the season band (a div plus its inner container), depth-aware. */
+const stripSeasonBand = (html) => {
+    const lines = html.split('\n');
+    const start = lines.findIndex((l) => l.includes('class="ds-season-banner"'));
+    if (start === -1) return html;
+    let depth = 0, end = -1;
+    for (let i = start; i < lines.length; i++) {
+        depth += (lines[i].match(/<div\b/g) || []).length - (lines[i].match(/<\/div>/g) || []).length;
+        if (i > start && depth <= 0) { end = i; break; }
+    }
+    if (end === -1) return html;
+    // take the preceding comment line with it
+    const from = (lines[start - 1] || '').includes('Seasonal availability') ? start - 1 : start;
+    lines.splice(from, end - from + 1);
+    return lines.join('\n');
+};
+
 const build = async () => {
     let base = await readFile(TEMPLATE, 'utf8');
     base = emptyMosaic(base);
@@ -61,6 +78,9 @@ const build = async () => {
                  '<h2 class="ds-heading-3xl mb-2">Recommended Destinations <span id="monthHeaderShort">this month</span></h2>')
         .replace(/(<p class="text-muted max-w-xl mx-auto mb-2">)[^<]*(<\/p>)/,
                  '$1<span id="monthIntro"></span>$2');
+
+    // The season band is meaningless on a month page — the month is the page.
+    base = stripSeasonBand(base);
 
     if (!base.includes('id="monthDestinationCards"')) throw new Error('mosaic container missing');
     if (!base.includes('id="monthHeroBg"'))           throw new Error('hero hook missing');
