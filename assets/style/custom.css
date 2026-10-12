@@ -3549,3 +3549,98 @@ footer.ds-minimal-footer .ds-footer-links li a:hover,
     font-weight: 600;
     padding: 0 4px;
 }
+
+/* =============================================================
+   MONTH PAGES — groups, region tier, image fallback
+   Rendered by assets/js/month-render.js from data/months.js.
+   ============================================================= */
+
+/* December splits into Wintry Escapes / Winter Sun. */
+.ds-month-group {
+    width: 100%;
+    margin: 48px 0 8px;
+    text-align: center;
+}
+.ds-month-group:first-child { margin-top: 0; }
+
+.ds-month-group-title {
+    font-family: var(--ds-font-heading);
+    font-size: var(--ds-fs-2xl);
+    font-weight: var(--ds-fw-bold);
+    color: var(--ds-text-primary);
+    margin-bottom: 6px;
+}
+
+.ds-month-group-note {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-muted);
+    margin: 0;
+}
+
+/* The country a region belongs to, above its name. */
+.ds-mosaic-parent {
+    font-size: var(--ds-fs-xs);
+    font-weight: var(--ds-fw-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ds-color-gold);
+    margin-bottom: 4px;
+}
+
+/* Regions listed beneath a country card. */
+.ds-mosaic-regions {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-secondary);
+    margin: 0 0 14px;
+}
+.ds-mosaic-regions span {
+    font-weight: var(--ds-fw-bold);
+    color: var(--ds-text-primary);
+}
+
+/* Shown when a destination has no photo sourced yet. Set `img` on the
+   record in data/destinations.js and this is replaced automatically. */
+.ds-mosaic-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    background: linear-gradient(135deg, var(--ds-color-primary), var(--ds-color-sky));
+    color: var(--ds-white);
+    text-align: center;
+    padding: 24px;
+}
+.ds-mosaic-placeholder span {
+    font-family: var(--ds-font-heading);
+    font-size: var(--ds-fs-xl);
+    font-weight: var(--ds-fw-bold);
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Previous / next month. */
+.ds-month-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+.ds-month-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: var(--ds-fw-bold);
+    color: var(--ds-color-primary);
+    text-decoration: none;
+    transition: color var(--ds-duration-fast) var(--ds-ease);
+}
+.ds-month-nav a:hover { color: var(--ds-color-gold); }
+
+@media (max-width: 575px) {
+    .ds-month-group { margin-top: 32px; }
+    .ds-month-group-title { font-size: var(--ds-fs-xl); }
+    .ds-mosaic-placeholder { min-height: 170px; }
+    .ds-mosaic-placeholder span { font-size: var(--ds-fs-lg); }
+}

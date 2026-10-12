@@ -49,6 +49,59 @@ the floating button and the mobile drawer are bound too.
 The numbers still present in page markup are **deliberate** — they are the
 no-JS fallback. The config overwrites them whenever JavaScript runs.
 
+## Month pages
+
+Twelve pages — `january.html` … `december.html` — covering 120
+month/destination pairings across 71 unique destinations.
+
+### Hierarchy
+
+```
+Month  →  Destination (country)  →  Region  →  page with itinerary + WhatsApp
+```
+
+Ten entries in the source data are already at the region tier — *Okinawa,
+Japan*; *Ladakh, India*; *Utah/Hawaii/Montana/New England/Florida, USA*;
+*Borneo, Malaysia*; *The Cotswolds*; *Alaska* — so they are parented to their
+country and the card shows that country above the name.
+
+### Where the content lives
+
+| File | Holds |
+|---|---|
+| `assets/js/data/destinations.js` | One record per destination. 30 appear in several months; each is described once here. |
+| `assets/js/data/months.js` | Each month's list, referencing destination slugs, with a "why this month" line per pairing. |
+| `assets/js/month-render.js` | Renders a page from `<body data-month="…">`. |
+
+To change a destination's description, image or page, edit its record — every
+month showing it updates.
+
+### Card links
+
+A destination with a real `page` links to it. One without offers a WhatsApp
+enquiry prefilled with the destination and month, built from
+`core/config.js`. **No card is ever a dead link**, and adding a country page
+later only means setting `page:` on that record.
+
+### Images
+
+21 destinations have a verified Unsplash photo. The other 50 render a branded
+gradient panel carrying the destination name — deliberately, because inventing
+Unsplash ids would produce 404s. Set `img` on a record to upgrade its card;
+nothing else needs to change.
+
+### Regenerating
+
+`january.html` is the template. After editing it:
+
+```bash
+npm run months     # rebuilds all twelve from january.html
+```
+
+Each page gets its own title, meta description and canonical URL, since these
+are the SEO surface for "where to travel in <month>". `month-detail.html` is
+now a `noindex` redirect shim so old `?month=` links keep working.
+
 ## Scripts
 
 | Command | What it does |
@@ -59,6 +112,7 @@ no-JS fallback. The config overwrites them whenever JavaScript runs.
 | `npm run tokenize` | Bind colour literals in our CSS to tokens |
 | `npm run lint` | Report drift that bypasses either parent |
 | `npm run smoke` | Fetch every page, verify all assets resolve |
+| `npm run months` | Rebuild the twelve month pages from `january.html` |
 
 All are idempotent — safe to re-run.
 

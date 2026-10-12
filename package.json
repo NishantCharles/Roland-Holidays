@@ -9,7 +9,8 @@
     "pictures": "node tools/wrap-picture.mjs",
     "tokenize": "node tools/tokenize-css.mjs",
     "lint": "node tools/lint-design.mjs",
-    "smoke": "node tools/smoke.mjs"
+    "smoke": "node tools/smoke.mjs",
+    "months": "node tools/build-month-pages.mjs"
   },
   "devDependencies": {
     "sharp": "^0.33.5"
