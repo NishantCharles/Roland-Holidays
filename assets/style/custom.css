@@ -3669,3 +3669,22 @@ footer.ds-minimal-footer .ds-footer-links li a:hover,
     font-weight: var(--ds-fw-medium);
     line-height: 1.4;
 }
+
+/* Spot card shown before a destination's photography is sourced.
+   Set `img` on the spot in assets/js/data/spots.js to replace it. */
+.ds-spot-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+    background: linear-gradient(135deg, var(--ds-color-primary), var(--ds-color-sky));
+    color: var(--ds-white);
+    text-align: center;
+    padding: 16px;
+}
+.ds-spot-placeholder span {
+    font-family: var(--ds-font-heading);
+    font-size: var(--ds-fs-md);
+    font-weight: var(--ds-fw-bold);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
