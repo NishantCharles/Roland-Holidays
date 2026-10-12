@@ -3644,3 +3644,28 @@ footer.ds-minimal-footer .ds-footer-links li a:hover,
     .ds-mosaic-placeholder { min-height: 170px; }
     .ds-mosaic-placeholder span { font-size: var(--ds-fs-lg); }
 }
+
+/* Chips listing the spots chosen in the itinerary builder.
+   Filled by updateBuilderSummary() in the state pages. */
+.ds-selected-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    min-height: 32px;
+    align-items: center;
+}
+
+.ds-selected-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--ds-radius-pill);
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: var(--ds-white);
+    font-size: var(--ds-fs-sm);
+    font-weight: var(--ds-fw-medium);
+    line-height: 1.4;
+}

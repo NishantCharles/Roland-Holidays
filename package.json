@@ -10,7 +10,8 @@
     "tokenize": "node tools/tokenize-css.mjs",
     "lint": "node tools/lint-design.mjs",
     "smoke": "node tools/smoke.mjs",
-    "months": "node tools/build-month-pages.mjs"
+    "months": "node tools/build-month-pages.mjs",
+    "states": "node tools/build-state-pages.mjs"
   },
   "devDependencies": {
     "sharp": "^0.33.5"
