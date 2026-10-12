@@ -165,6 +165,13 @@ var ROLAND_DESTINATIONS = {
     'st-lucia':     { name: 'St Lucia', type: 'country', img: null, page: 'st-lucia.html', regions: [],
                       desc: 'The Pitons, rainforest and sulphur springs, with quiet bays on the west coast.' },
 
+    'mauritius':    { name: 'Mauritius', type: 'country', img: null, page: 'mauritius.html', regions: [],
+                      desc: 'Lagoon beaches, sugarcane hills and a mix of Creole, Indian and French culture in the Indian Ocean.' },
+    'seychelles':   { name: 'Seychelles', type: 'country', img: null, page: 'seychelles.html', regions: [],
+                      desc: 'Granite boulders over white sand across Mah\u00e9, Praslin and La Digue, with reefs a few steps offshore.' },
+    'turkey':       { name: 'Turkey', type: 'country', img: null, page: 'turkey.html', regions: [],
+                      desc: 'Istanbul astride two continents, the balloons of Cappadocia and the turquoise Aegean coast.' },
+
     /* ---- Oceania & Antarctic ------------------------------------------- */
     'australia':    { name: 'Australia', type: 'country', img: 'photo-1506973035872-a4ec16b8e8d9', page: 'australia.html', regions: [],
                       desc: 'Sydney and the east coast, the Great Barrier Reef, and the Red Centre at Uluru.' },

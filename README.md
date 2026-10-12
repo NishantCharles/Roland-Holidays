@@ -102,6 +102,54 @@ Each page gets its own title, meta description and canonical URL, since these
 are the SEO surface for "where to travel in <month>". `month-detail.html` is
 now a `noindex` redirect shim so old `?month=` links keep working.
 
+## Destination pages
+
+Every destination in the month data has its own page with an itinerary
+builder: pick places, set pax, hotel class and dates, and the plan goes to
+Roland Holidays on WhatsApp.
+
+### Where the content lives
+
+| File | Holds |
+|---|---|
+| `assets/js/data/destinations.js` | One record per destination — name, type, parent, image, page. |
+| `assets/js/data/spots.js` | The selectable places per destination, with stay length and what each covers. |
+| `assets/js/india-states.js` | India's states, which carry extra fields `india.html` needs. |
+| `assets/js/destination-spots.js` | Renders the builder and the gallery for any destination. |
+
+### Regenerating
+
+Three generators, all idempotent — running them repeatedly produces
+byte-identical output:
+
+```bash
+npm run states          # the 8 India states, from rajasthan.html
+npm run destinations    # every other destination, from rajasthan.html
+npm run months          # the 12 month pages, from january.html
+```
+
+`rajasthan.html` and `january.html` are both template **and** output, so each
+generator strips what the previous run injected (page slug, canonical link,
+script tags) before writing. Edit a template and re-run to roll the change
+across every page.
+
+### Images
+
+21 destinations have a verified Unsplash photo. The rest render a branded
+gradient panel carrying the name — inventing Unsplash ids would produce 404s.
+A destination with no spot photography hides its gallery section and tab
+rather than showing an empty shell.
+
+Set `img` on a record or a spot and the card, hero and gallery upgrade
+automatically. Nothing else needs changing.
+
+### Legacy URLs
+
+`destination-detail.html` and `month-detail.html` are `noindex` routers that
+send old `?country=`, `?state=` and `?month=` links to the right page. Both
+previously rendered content: `destination-detail.html` showed Rajasthan's
+photos and Indian itinerary spots whatever destination you asked for.
+
 ## Scripts
 
 | Command | What it does |
@@ -113,6 +161,8 @@ now a `noindex` redirect shim so old `?month=` links keep working.
 | `npm run lint` | Report drift that bypasses either parent |
 | `npm run smoke` | Fetch every page, verify all assets resolve |
 | `npm run months` | Rebuild the twelve month pages from `january.html` |
+| `npm run states` | Rebuild the 8 India state pages from `rajasthan.html` |
+| `npm run destinations` | Rebuild every other destination page |
 
 All are idempotent — safe to re-run.
 
@@ -156,11 +206,17 @@ all are near-duplicates of real tokens — `#5A9BBF` against the token
 so they were left alone and are reported by `npm run lint` instead. Worth
 doing as its own change, with a visual pass over the affected pages.
 
-### Hotlinked images
+### External image dependency
 
-Several pages load photographs directly from Unsplash rather than from
-`assets/img`. That is an external dependency on every page load, and the
-licensing should be confirmed before the site goes live.
+Photography is served from Unsplash's CDN rather than `assets/img`. Their CDN
+resizes and serves WebP, so this is not a speed problem — but it is an
+external dependency on every page load, and the licensing should be confirmed
+before launch.
+
+Two worse cases were removed: 246 video posters that hotlinked Unsplash (now
+local frames that actually match the video), and a lightbox gallery on
+`img.magnific.com` whose signed URL expired in June 2026 — four months before
+anyone noticed.
 
 ### Why there is no minification step
 

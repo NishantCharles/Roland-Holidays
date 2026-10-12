@@ -61,6 +61,15 @@ function renderDestinationGallery(container, slug) {
 
     var spots = (ROLAND_SPOTS[slug] || []).filter(function (s) { return s.img; });
 
+    /* India's states keep their richer records in india-states.js; fall back
+       to their cities so a state page shows its own photographs. */
+    if (!spots.length && typeof INDIA_STATES !== 'undefined') {
+        var state = INDIA_STATES.filter(function (x) { return x.slug === slug; })[0];
+        if (state) {
+            spots = state.cities.filter(function (c) { return c.img; });
+        }
+    }
+
     /* No photography sourced for this destination yet: hide the gallery and
        its tab rather than show an empty section. Add `img` to spots in
        data/spots.js and both reappear on their own. */

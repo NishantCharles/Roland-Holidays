@@ -3688,3 +3688,22 @@ footer.ds-minimal-footer .ds-footer-links li a:hover,
     font-weight: var(--ds-fw-bold);
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
+
+/* The "Send Custom Plan to WhatsApp" button is sized by its label, which does
+   not wrap (the kinetic hover slides two copies of the text). At 320px it ran
+   290px wide inside a 254px column and pushed the page 3px into horizontal
+   scroll. Tighten it on the narrowest phones. */
+@media (max-width: 374px) {
+    .ds-btn-kinetic-wa {
+        padding-left: 10px;
+        max-width: 100%;
+    }
+    .ds-btn-kinetic-wa .primay-button-text {
+        font-size: 11px;
+        letter-spacing: 0;
+    }
+    .ds-btn-kinetic-wa .button-arrow-pill {
+        width: 26px;
+        height: 26px;
+    }
+}

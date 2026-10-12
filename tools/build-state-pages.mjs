@@ -29,11 +29,52 @@ const build = async () => {
     const template = await readFile(TEMPLATE, 'utf8');
     const raj      = states.find((s) => s.slug === 'rajasthan');
 
+    // Replace the hardcoded lightbox gallery with one built from the state's
+    // own cities. The template's tiles pointed at img.magnific.com, including
+    // one signed URL that expired in June 2026.
+    const emptyGallery = (html) => {
+        const lines = html.split('\n');
+        const start = lines.findIndex((l) => l.includes('<div class="dest-gallery">'));
+        if (start === -1) return html;
+        let depth = 0, end = -1;
+        for (let i = start; i < lines.length; i++) {
+            depth += (lines[i].match(/<div\b/g) || []).length - (lines[i].match(/<\/div>/g) || []).length;
+            if (i > start && depth <= 0) { end = i; break; }
+        }
+        if (end === -1) return html;
+        const indent = lines[start].match(/^\s*/)[0];
+        lines.splice(start, end - start + 1, `${indent}<div class="dest-gallery" id="destGalleryGrid"></div>`);
+        return lines.join('\n');
+    };
+
+    let base = emptyGallery(template);
+    base = base.replace(/        var galleryImages = \[[\s\S]*?\];/,
+        '        var galleryImages = renderDestinationGallery(\n' +
+        '            document.getElementById(\'destGalleryGrid\'), window.ROLAND_PAGE_SLUG) || [];');
+    // Strip any copies the previous run left in the template before adding
+    // ours, or the tags multiply on every build.
+    base = base.replace(/\s*<script src="\.\/assets\/js\/(data\/(spots|destinations)|destination-spots|india-states)\.js"><\/script>/g, '');
+
+    // These must be defined before the inline body script builds galleryImages.
+    base = base.replace(/<\/head>/,
+        '    <script src="./assets/js/india-states.js"></script>\n' +
+        '    <script src="./assets/js/data/spots.js"></script>\n' +
+        '    <script src="./assets/js/destination-spots.js"></script>\n' +
+        '</head>');
+
+    // rajasthan.html is both template and output, so it carries whatever slug
+    // the last run wrote. Strip it before inserting this page's, or two
+    // assignments land and the template's wins.
+    base = base.replace(/\s*<script>window\.ROLAND_PAGE_SLUG = "[^"]*";<\/script>/g, '');
+
+    // Drop any canonical the previous run baked into the template.
+    base = base.replace(/\s*<link rel="canonical"[^>]*>/g, '');
+
     for (const st of states) {
         const heroUrl = st.hero ? st.hero : unsplash(st.img, 1920);
         const firstCity = st.cities[0].name;
 
-        let out = template
+        let out = base
             // identity + metadata
             .replace(/<title>[^<]*<\/title>/,
                      `<title>${st.name} – Destination Guide | Roland Holidays</title>`)
@@ -66,7 +107,8 @@ const build = async () => {
                      `renderStateCitySpots(document.getElementById('builderCitiesGrid'), '${st.slug}')`)
 
             // body key, for live-editor scoping
-            .replace(/<body([^>]*)data-page-key="[a-z-]+"/, `<body$1data-page-key="${st.slug}"`);
+            .replace(/<body([^>]*)data-page-key="[a-z-]+"/, `<body$1data-page-key="${st.slug}"`)
+            .replace(/(<meta name="author"[^>]*>)/, `$1\n    <script>window.ROLAND_PAGE_SLUG = ${JSON.stringify(st.slug)};</script>`);
 
         // Guard: the builder must be wired to this state, not left on the template's.
         if (!out.includes(`'${st.slug}')`)) throw new Error(`${st.slug}: builder slug not substituted`);

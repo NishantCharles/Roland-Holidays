@@ -42,6 +42,8 @@ const stripBlock = (html, openMatch) => {
 
 /** Replace the gallery's hardcoded tiles with a container the renderer fills. */
 const emptyGallery = (html) => {
+    // The state generator shares this template and may already have emptied it.
+    if (html.includes('id="destGalleryGrid"')) return html;
     const lines = html.split('\n');
     const start = lines.findIndex((l) => l.includes('<div class="dest-gallery">'));
     if (start === -1) throw new Error('dest-gallery not found');
@@ -70,6 +72,7 @@ const build = async () => {
     base = emptyGallery(base);
 
     // Gallery tiles and the lightbox array both come from the spots now.
+    // Already swapped if the state generator ran first.
     base = base.replace(/        var galleryImages = \[[\s\S]*?\];/,
         '        var galleryImages = renderDestinationGallery(\n' +
         '            document.getElementById(\'destGalleryGrid\'), window.ROLAND_PAGE_SLUG) || [];');
@@ -77,6 +80,10 @@ const build = async () => {
     // Swap the India-state renderer for the general one.
     base = base.replace(/<script>renderStateCitySpots\([^<]*<\/script>/,
         '<script>renderDestinationSpots(document.getElementById(\'builderCitiesGrid\'), window.ROLAND_PAGE_SLUG);</script>');
+
+    // Strip any copies the previous run left in the template before adding
+    // ours, or the tags multiply on every build.
+    base = base.replace(/\s*<script src="\.\/assets\/js\/(data\/(spots|destinations)|destination-spots|india-states)\.js"><\/script>/g, '');
 
     // Load the spot data and renderer in <head>: an inline script in the body
     // builds galleryImages, so these must already be defined by then.
@@ -87,6 +94,14 @@ const build = async () => {
         '</head>');
 
     if (!base.includes('destination-spots.js')) throw new Error('renderer script not injected');
+
+    // rajasthan.html is both template and output, so it carries whatever slug
+    // the last run wrote. Strip it before inserting this page's, or two
+    // assignments land and the template's wins.
+    base = base.replace(/\s*<script>window\.ROLAND_PAGE_SLUG = "[^"]*";<\/script>/g, '');
+
+    // Drop any canonical the previous run baked into the template.
+    base = base.replace(/\s*<link rel="canonical"[^>]*>/g, '');
 
     const targets = Object.keys(destinations).filter(
         (slug) => slug !== 'get' && spots[slug] && !stateSlugs.has(slug) && !BESPOKE.has(slug)

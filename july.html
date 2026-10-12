@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="./assets/style/live-editor.css">
 </head>
 
-<body data-page-key="july" data-month="july">
+<body data-page-key="january" data-month="january">
 
     <!-- ══════════════ HEADER ══════════════ -->
     <header class="tour-header">
@@ -55,7 +55,15 @@
                                             <picture>
                                                 <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
                                                 <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
-                                                <img src="./assets/img/rolandholidays.png" alt="Roland Holidays" class="img-fluid blur-up lazyloaded">
+                                                <picture>
+                                                    <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
+                                                    <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
+                                                    <picture>
+                                                        <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
+                                                        <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
+                                                        <img src="./assets/img/rolandholidays.png" alt="Roland Holidays" class="img-fluid blur-up lazyloaded">
+                                                    </picture>
+                                                </picture>
                                             </picture>
                                         </picture>
                                     </picture>
@@ -131,7 +139,6 @@
     </header>
     <!-- HEADER END -->
 
-
     <!-- ══════════════ BREADCRUMB HERO ══════════════ -->
     <section class="breadcrumb-section bg-size blur-up lazyloaded" id="monthHeroBg"
        style="background-size: cover; background-position: center center; background-repeat: no-repeat;">
@@ -158,7 +165,6 @@
     </section>
     <!-- BREADCRUMB END -->
 
-
     <!-- ══════════════ MONTH CONTENT ══════════════ -->
     <section class="py-section bg-white">
         <div class="container text-center">
@@ -172,7 +178,6 @@
         </div>
     </section>
     <!-- MONTH CONTENT END -->
-
 
     <!-- ══════════════ REQUEST FULL ITINERARY SECTION ══════════════ -->
     <section class="py-section bg-slate-50">
@@ -256,7 +261,6 @@
     </script>
     <!-- REQUEST FULL ITINERARY SECTION END -->
 
-
     <!-- footer start -->
     <!-- ══════════════ MINIMAL BRIGHT LIGHT FOOTER ══════════════ -->
     <footer class="ds-minimal-footer py-5 bg-white">
@@ -277,7 +281,15 @@
                                         <picture>
                                             <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
                                             <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
-                                            <img src="./assets/img/rolandholidays.png" alt="Roland Holidays">
+                                            <picture>
+                                                <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
+                                                <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
+                                                <picture>
+                                                    <source srcset="./assets/img/rolandholidays.avif" type="image/avif">
+                                                    <source srcset="./assets/img/rolandholidays.webp" type="image/webp">
+                                                    <img src="./assets/img/rolandholidays.png" alt="Roland Holidays">
+                                                </picture>
+                                            </picture>
                                         </picture>
                                     </picture>
                                 </picture>
@@ -332,7 +344,6 @@
     </footer>
     <!-- MINIMAL BRIGHT LIGHT FOOTER END -->
 
-
     <!-- ══════════════ SCRIPTS ══════════════ -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Site configuration — single source of truth for contact details -->
@@ -352,6 +363,7 @@
     <script src="./assets/js/data/destinations.js"></script>
     <script src="./assets/js/data/months.js"></script>
     <script src="./assets/js/month-render.js"></script>
+
 
     <script src="./assets/js/design-system.js"></script>
 </body>

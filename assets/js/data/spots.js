@@ -449,6 +449,26 @@ var ROLAND_SPOTS = {
         { name: 'Rainforest & Tet Paul', days: '1 day', places: 'Canopy zip lines, nature trail with Piton views.' }
     ],
 
+    'mauritius': [
+        { name: 'Port Louis', days: '1 day', places: 'Caudan waterfront, the central market, Fort Adelaide.' },
+        { name: 'Le Morne', days: '2 days', places: 'The UNESCO peninsula, kitesurfing, underwater waterfall flights.' },
+        { name: 'Chamarel', days: '1 day', places: 'Seven Coloured Earths, the waterfall, rum distillery.' },
+        { name: 'Ile aux Cerfs', days: '1 day', places: 'Lagoon day trip, water sports and beach barbecues.' }
+    ],
+    'seychelles': [
+        { name: 'Mah\u00e9', days: '2 days', places: 'Beau Vallon, Victoria market, Morne Seychellois trails.' },
+        { name: 'Praslin', days: '2 days', places: 'Anse Lazio, Vall\u00e9e de Mai and the coco de mer palms.' },
+        { name: 'La Digue', days: '1\u20132 days', places: 'Anse Source d\u2019Argent, bicycles, granite boulder beaches.' },
+        { name: 'Island hopping', days: '1 day', places: 'Curieuse giant tortoises, St Pierre snorkelling.' }
+    ],
+    'turkey': [
+        { name: 'Istanbul', days: '3 days', places: 'Hagia Sophia, Blue Mosque, Topkapi, the Grand Bazaar, Bosphorus cruise.' },
+        { name: 'Cappadocia', days: '2 days', places: 'Hot-air balloons at dawn, G\u00f6reme valleys, underground cities, cave hotels.' },
+        { name: 'Pamukkale', days: '1 day', places: 'The white travertine terraces and the ruins of Hierapolis.' },
+        { name: 'Ephesus', days: '1 day', places: 'The Library of Celsus, the great theatre, the Temple of Artemis site.' },
+        { name: 'Antalya', days: '2 days', places: 'Kaleici old town, the turquoise coast, D\u00fcden falls, gulet cruising.' }
+    ],
+
     /* ---- Oceania & Antarctic ------------------------------------------- */
     'australia': [
         { name: 'Sydney', days: '2–3 days', places: 'The Opera House, Harbour Bridge climb, Bondi to Coogee walk.' },

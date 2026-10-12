@@ -23,6 +23,10 @@ const MONTHS = [
 
 /* Replace the hardcoded mosaic block with the container the renderer fills. */
 const emptyMosaic = (html) => {
+    // Already emptied by a previous run: the container is a single closed line,
+    // and re-running the depth walk below would swallow the section after it.
+    if (html.includes('id="monthDestinationCards"')) return html;
+
     const lines = html.split('\n');
     const start = lines.findIndex((l) => l.includes('ds-mosaic-layout'));
     if (start === -1) throw new Error('ds-mosaic-layout not found in template');
@@ -61,6 +65,12 @@ const build = async () => {
     if (!base.includes('id="monthDestinationCards"')) throw new Error('mosaic container missing');
     if (!base.includes('id="monthHeroBg"'))           throw new Error('hero hook missing');
 
+    // Strip the previous run's copies before re-adding, and normalise the blank
+    // line the strip leaves behind, so repeated builds are byte-identical.
+    base = base.replace(/\s*<!-- Month data \+ renderer -->/g, '')
+               .replace(/\s*<script src="\.\/assets\/js\/(data\/(destinations|months)|month-render)\.js"><\/script>/g, '')
+               .replace(/\n{3,}/g, '\n\n');
+
     // Load the data layer and renderer ahead of the design-system engine.
     const scripts =
         '    <!-- Month data + renderer -->\n' +
@@ -70,6 +80,9 @@ const build = async () => {
     base = base.replace(/(\s*)<script src="\.\/assets\/js\/design-system\.js"><\/script>/,
                         `\n${scripts}$1<script src="./assets/js/design-system.js"></script>`);
     if (!base.includes('month-render.js')) throw new Error('renderer script not injected');
+
+    // Drop any canonical the previous run baked into the template.
+    base = base.replace(/\s*<link rel="canonical"[^>]*>/g, '');
 
     for (const [slug, name] of MONTHS) {
         let out = base

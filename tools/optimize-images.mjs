@@ -20,6 +20,11 @@ const Q_WEBP     = 80;
 const Q_AVIF     = 55;
 const SOURCE_EXT = new Set(['.jpg', '.jpeg', '.png']);
 
+/* Favicons and logos are referenced by <link rel="icon"> and by scripts that
+   build markup, neither of which can use <picture> — so webp/avif siblings
+   for them would never be served. Skip them. */
+const NO_DERIVATIVES = /((^|\/)(icon|apple-touch-icon|logo|footer-logo)\.(png|jpe?g)|-poster\.jpe?g)$/i;
+
 const walk = async (dir) => {
     const out = [];
     for (const entry of await readdir(dir, { withFileTypes: true })) {
@@ -41,6 +46,8 @@ const run = async () => {
     let before = 0, after = 0, written = 0, skipped = 0;
 
     for (const file of files) {
+        if (NO_DERIVATIVES.test(file)) { skipped++; continue; }
+
         const stem    = join(dirname(file), basename(file, extname(file)));
         const webp    = `${stem}.webp`;
         const avif    = `${stem}.avif`;
