@@ -177,10 +177,6 @@ const build = async () => {
                      `<h3 class="section-h3-bold">${d.name} Photo Gallery</h3>`)
             .replace(/<p>A visual showcase of India's[^<]*<\/p>/,
                      `<p>A visual showcase of ${d.name} — the places our itineraries are built around.</p>`)
-            .replace(/<span class="ds-dest-quote-tag">Rajasthan<\/span>/,
-                     `<span class="ds-dest-quote-tag">${d.name}</span>`)
-            .replace(/<p>"The heritage trail through Rajasthan's[^<]*<\/p>/,
-                     `<p>"Our ${d.name} trip was planned around exactly what we wanted to see — nothing rushed, nothing wasted."</p>`)
             .replace(/<body([^>]*)data-page-key="[a-z_-]+"/, `<body$1data-page-key="${slug}"`);
 
         // No months recommended (a parent country, or one the month data does

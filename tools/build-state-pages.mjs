@@ -97,10 +97,6 @@ const build = async () => {
                      `<div class="top-bar"><h6>${st.name} Highlights</h6></div>`)
             .replace(/<div class="gallery-caption-bar">Jaipur – Pink City<\/div>/,
                      `<div class="gallery-caption-bar">${firstCity}</div>`)
-            .replace(/<span class="ds-dest-quote-tag">Rajasthan<\/span>/,
-                     `<span class="ds-dest-quote-tag">${st.name}</span>`)
-            .replace(/<p>"The heritage trail through Rajasthan's[^<]*<\/p>/,
-                     `<p>"Our ${st.name} trip was planned around exactly what we wanted to see — nothing rushed, nothing wasted."</p>`)
 
             // the builder reads its spots from this slug
             .replace(/renderStateCitySpots\(document\.getElementById\('builderCitiesGrid'\), '[a-z-]+'\)/,

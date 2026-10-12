@@ -458,84 +458,6 @@ body.nav-open {
     .ds-season-banner-urgent { padding: 3px 10px; }
 }
 
-/* ── Inclusions & Exclusions Cards ── */
-.ds-incl-card {
-    background: var(--ds-white); border-radius: var(--ds-radius-md); box-shadow: var(--ds-shadow-sm);
-    padding: 24px; height: 100%;
-}
-.ds-incl-card h6 {
-    font-size: 16px; font-weight: 800; color: var(--ds-text-primary); margin-bottom: 14px;
-}
-.ds-incl-card-yes { border-top: 3px solid var(--ds-color-primary); background: #f2f9f8; }
-.ds-incl-card-no { border-top: 3px solid #e05656; background: #fdf3f3; }
-.ds-incl-card-yes .ds-incl-list li,
-.ds-incl-card-no .ds-incl-list li { border-bottom-color: rgba(0,0,0,0.06); }
-.ds-incl-list { list-style: none; margin: 0; padding: 0; }
-.ds-incl-list li {
-    display: block; width: 100%;
-    padding: 8px 0; font-size: 14px; color: var(--ds-text-primary);
-    border-bottom: 1px solid #f0f4f6;
-}
-.ds-incl-list li:last-child { border-bottom: none; }
-
-/* ── For Travel Agents Section ── */
-.ds-agent-box {
-    max-width: 900px; background: #0F2A2A; border-radius: var(--ds-radius-lg);
-    padding: 40px;
-}
-.ds-agent-box .section-tag { color: var(--ds-color-gold); }
-.ds-agent-box h2 { color: var(--ds-white); }
-.ds-agent-box p.text-muted { color: rgba(255,255,255,0.65) !important; }
-.ds-agent-card {
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-    border-radius: var(--ds-radius-md); padding: 24px; height: 100%; text-align: left;
-}
-.ds-agent-card > i:first-child {
-    font-size: 24px; color: var(--ds-color-gold); margin-bottom: 12px; display: block;
-}
-.ds-agent-card h6 { color: var(--ds-white); font-size: 15px; font-weight: 800; margin-bottom: 8px; }
-.ds-agent-card p { color: rgba(255,255,255,0.6); font-size: 13px; line-height: 1.5; margin-bottom: 14px; }
-.ds-agent-link {
-    background: var(--ds-color-gold); border: none; padding: 10px 18px; border-radius: 30px;
-    color: #1a1005; font-size: 13px; font-weight: 700; text-decoration: none; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 8px; line-height: 1;
-    transition: background 0.2s ease, transform 0.2s ease;
-}
-.ds-agent-link i { display: inline-flex; align-items: center; line-height: 1; color: inherit; }
-.ds-agent-link:hover { background: var(--ds-white); color: #1a1005; transform: translateY(-2px); }
-
-/* ── Destination Traveler Quote Card ── */
-.ds-dest-quote-card {
-    max-width: 900px; margin: 0 auto; background: var(--ds-white);
-    border-radius: var(--ds-radius-lg); box-shadow: var(--ds-shadow-md); padding: 32px 40px;
-}
-.ds-dest-quote-top {
-    display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px;
-}
-.ds-dest-quote-icon { font-size: 26px; color: var(--ds-color-primary-light); }
-.ds-dest-quote-tag {
-    font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--ds-text-muted); padding-top: 4px;
-}
-.ds-dest-quote-card p {
-    font-size: 16px; font-style: italic; color: var(--ds-text-primary);
-    line-height: 1.7; margin-bottom: 20px;
-}
-.ds-dest-quote-card hr { border-color: #eef0f2; margin-bottom: 18px; }
-.ds-dest-quote-footer {
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-}
-.ds-dest-quote-person { display: flex; align-items: center; gap: 12px; }
-.ds-dest-quote-person img {
-    width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
-}
-.ds-dest-quote-person h6 {
-    font-size: 14px; font-weight: 800; color: var(--ds-text-primary); margin: 0;
-}
-.ds-dest-quote-person span {
-    font-size: 12px; font-weight: 600; color: var(--ds-color-primary);
-}
-.ds-dest-quote-stars { color: #f5b400; font-size: 13px; }
 
 /* ── Header Destinations Mega Menu ── */
 .ds-mega-menu-parent { position: relative; }
@@ -620,11 +542,6 @@ body.nav-open {
 }
 .ds-modal-close:hover { background: var(--ds-color-sky-25); }
 
-/* ── Request Full Itinerary Form ── */
-.ds-itinerary-request-card {
-    max-width: 900px; background: var(--ds-white); border-radius: var(--ds-radius-lg);
-    box-shadow: var(--ds-shadow-md); padding: 40px;
-}
 .ds-form-label {
     display: block; font-size: 12px; font-weight: 700; color: var(--ds-text-primary);
     margin-bottom: 6px;
