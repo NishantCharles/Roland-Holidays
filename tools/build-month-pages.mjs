@@ -106,7 +106,13 @@ const build = async () => {
 
     for (const [slug, name] of MONTHS) {
         let out = base
-            .replace(/<body data-page-key="january">/, `<body data-page-key="${slug}" data-month="${slug}">`)
+            // Tolerate attributes a previous run added: january.html is also the
+            // template, so after one build its body already carries data-month
+            // and an exact-match replace silently stops firing — which left
+            // every month page rendering January.
+            .replace(/<body\b[^>]*>/, `<body data-page-key="${slug}" data-month="${slug}">`)
+            .replace(/(<li class="active-item" id="monthBreadcrumbItem">)[^<]*(<\/li>)/,
+                     `$1${name}$2`)
             .replace(/<title>[^<]*<\/title>/,
                      `<title>Where to Travel in ${name} | Roland Holidays</title>`)
             .replace(/<meta name="description" content="[^"]*">/,

@@ -13,6 +13,7 @@
  * Idempotent. Run with `npm run destinations`.
  */
 import { readFile, writeFile } from 'node:fs/promises';
+import { breadcrumbFor, applyBreadcrumb, firstMonthFor } from './lib/breadcrumb.mjs';
 
 const TEMPLATE = 'rajasthan.html';
 const SITE     = 'https://nishantcharles.github.io/Roland-Holidays';
@@ -166,9 +167,7 @@ const build = async () => {
                      `$1${d.name} – Destination Guide$2`)
             .replace(/(<li class="active-item" id="breadcrumbActiveItem">)[^<]*(<\/li>)/,
                      `$1${d.name}$2`)
-            .replace(/<li><a href="india\.html">India<\/a><\/li>/,
-                     parent ? `<li><a href="${parent.page || parent.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.html'}">${parent.name}</a></li>`
-                            : '<li><a href="destinations.html">Destinations</a></li>')
+
             .replace(/<span>Best Time to Visit: [^<]*<\/span>/,
                      bestMonths.length
                          ? `<span>Best Time to Visit: ${bestMonths.join(', ')}</span>`
@@ -178,6 +177,16 @@ const build = async () => {
             .replace(/<p>A visual showcase of India's[^<]*<\/p>/,
                      `<p>A visual showcase of ${d.name} — the places our itineraries are built around.</p>`)
             .replace(/<body([^>]*)data-page-key="[a-z_-]+"/, `<body$1data-page-key="${slug}"`);
+
+        // One breadcrumb shape site-wide, derived rather than inherited from the
+        // template (which hardcoded "January > India" onto every page).
+        out = applyBreadcrumb(out, breadcrumbFor({
+            name: d.name,
+            monthName: firstMonthFor(slug, monthsFor),
+            monthSlug: (firstMonthFor(slug, monthsFor) || '').toLowerCase() || null,
+            parentName: parent ? parent.name : null,
+            parentPage: parent ? parent.page : null,
+        }));
 
         // No months recommended (a parent country, or one the month data does
         // not cover) — drop the band rather than show filler.

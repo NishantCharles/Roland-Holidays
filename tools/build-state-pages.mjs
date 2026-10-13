@@ -10,6 +10,7 @@
  * Idempotent. Run with `npm run states`.
  */
 import { readFile, writeFile } from 'node:fs/promises';
+import { breadcrumbFor, applyBreadcrumb } from './lib/breadcrumb.mjs';
 
 const TEMPLATE = 'rajasthan.html';
 const SITE     = 'https://nishantcharles.github.io/Roland-Holidays';
@@ -28,6 +29,17 @@ const build = async () => {
     const states   = await loadStates();
     const template = await readFile(TEMPLATE, 'utf8');
     const raj      = states.find((s) => s.slug === 'rajasthan');
+
+    // India's first recommended month, for the breadcrumb's month tier.
+    const monthsSrc = await readFile('assets/js/data/months.js', 'utf8');
+    const mScope = {};
+    new Function('s', monthsSrc + '; s.v = ROLAND_MONTHS;')(mScope);
+    let indiaMonth = null;
+    for (const key of mScope.v.order) {
+        const m = mScope.v[key];
+        const lists = m.groups ? m.groups.map((g) => g.list) : [m.list];
+        if (lists.some((l) => l.some((e) => e.slug === 'india'))) { indiaMonth = m.name; break; }
+    }
 
     // Replace the hardcoded lightbox gallery with one built from the state's
     // own cities. The template's tiles pointed at img.magnific.com, including
@@ -87,8 +99,7 @@ const build = async () => {
             .replace(/url\(assets\/img\/rj\.jpg\)/, `url(${heroUrl})`)
             .replace(/(<h1 class="ds-page-title"[^>]*>)[^<]*(<\/h1>)/,
                      `$1${st.name} – Destination Guide$2`)
-            .replace(/(<li class="active-item" id="breadcrumbActiveItem">)[^<]*(<\/li>)/,
-                     `$1${st.name}$2`)
+
             .replace(/<span>Best Time to Visit: [^<]*<\/span>/,
                      `<span>Best Time to Visit: ${st.season}</span>`)
 
@@ -105,6 +116,16 @@ const build = async () => {
             // body key, for live-editor scoping
             .replace(/<body([^>]*)data-page-key="[a-z-]+"/, `<body$1data-page-key="${st.slug}"`)
             .replace(/(<meta name="author"[^>]*>)/, `$1\n    <script>window.ROLAND_PAGE_SLUG = ${JSON.stringify(st.slug)};</script>`);
+
+        // Same shape as every other destination page. India's states sit under
+        // India, and India is a January destination.
+        out = applyBreadcrumb(out, breadcrumbFor({
+            name: st.name,
+            monthName: indiaMonth,
+            monthSlug: indiaMonth ? indiaMonth.toLowerCase() : null,
+            parentName: 'India',
+            parentPage: 'india.html',
+        }));
 
         // Guard: the builder must be wired to this state, not left on the template's.
         if (!out.includes(`'${st.slug}')`)) throw new Error(`${st.slug}: builder slug not substituted`);
