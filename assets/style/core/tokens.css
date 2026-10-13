@@ -150,6 +150,7 @@
     --ds-ease:            cubic-bezier(0.16, 1, 0.3, 1);
     --ds-duration-fast:   0.18s;
     --ds-duration-base:   0.35s;
+    --ds-duration-slow:   0.7s;   /* image pans and zooms */
     --ds-transition-base: all var(--ds-duration-base) var(--ds-ease);
 
     /* ----------------------------------------------------------------------
@@ -169,5 +170,6 @@
     :root {
         --ds-duration-fast: 0.01ms;
         --ds-duration-base: 0.01ms;
+        --ds-duration-slow: 0.01ms;
     }
 }

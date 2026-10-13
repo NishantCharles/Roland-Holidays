@@ -601,25 +601,113 @@ body.nav-open {
 
 
 /* ── Plan By Month Section ── */
+/* Plan By Month grid — the cards need room to breathe, so the gutters come
+   from .row (g-3 / g-md-4) and the motion lives here. Durations use the
+   tokens, which collapse under prefers-reduced-motion. */
+.ds-month-grid { margin-top: 8px; }
+
 .ds-month-card {
-    position: relative; display: block; aspect-ratio: 3 / 4; width: 100%;
-    overflow: hidden; background-size: cover; background-position: center;
-    border-radius: 4px;
+    position: relative;
+    display: block;
+    aspect-ratio: 3 / 4.2;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--ds-radius-sm);
+    background-position: center;
+    background-size: cover;
+    box-shadow: var(--ds-shadow-sm);
+    transform: translateZ(0);
+    transition:
+        transform var(--ds-duration-base) var(--ds-ease),
+        box-shadow var(--ds-duration-base) var(--ds-ease);
 }
+
+/* The photograph sits on a pseudo-element so it can scale without dragging
+   the label with it. background-image is set inline on the anchor. */
+.ds-month-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-position: center;
+    background-size: cover;
+    transition: transform var(--ds-duration-slow) var(--ds-ease);
+}
+
 .ds-month-card-overlay {
-    position: absolute; inset: 0; background: rgba(0,0,0,0.25);
-    transition: background 0.3s ease;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.18) 55%, rgba(0, 0, 0, 0.28));
+    transition: background var(--ds-duration-base) var(--ds-ease);
 }
-.ds-month-card:hover .ds-month-card-overlay { background: rgba(0,0,0,0.5); }
+
 .ds-month-card-text {
-    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .ds-month-card-name {
-    font-size: 15px; font-weight: 700; color: var(--ds-white); text-transform: uppercase;
-    letter-spacing: 0.12em; text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+    position: relative;
+    font-size: 15px;
+    font-weight: var(--ds-fw-bold);
+    color: var(--ds-white);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+    transition: transform var(--ds-duration-base) var(--ds-ease);
+}
+
+/* A hairline that draws out from the centre on hover. */
+.ds-month-card-name::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    width: 0;
+    height: 2px;
+    background: var(--ds-color-gold);
+    border-radius: var(--ds-radius-pill);
+    transform: translateX(-50%);
+    transition: width var(--ds-duration-base) var(--ds-ease);
+}
+
+/* Hover and keyboard focus behave identically. */
+.ds-month-card:hover,
+.ds-month-card:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: var(--ds-shadow-lg);
+}
+.ds-month-card:hover::before,
+.ds-month-card:focus-visible::before { transform: scale(1.07); }
+
+.ds-month-card:hover .ds-month-card-overlay,
+.ds-month-card:focus-visible .ds-month-card-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.42));
+}
+
+.ds-month-card:hover .ds-month-card-name,
+.ds-month-card:focus-visible .ds-month-card-name { transform: translateY(-4px); }
+
+.ds-month-card:hover .ds-month-card-name::after,
+.ds-month-card:focus-visible .ds-month-card-name::after { width: 28px; }
+
+.ds-month-card:focus-visible {
+    outline: 2px solid var(--ds-color-gold);
+    outline-offset: 3px;
+}
+
+/* Press: settle back down so the click registers physically. */
+.ds-month-card:active {
+    transform: translateY(-2px) scale(0.985);
+    box-shadow: var(--ds-shadow-md);
+    transition-duration: var(--ds-duration-fast);
 }
 @media (max-width: 767px) {
     .ds-month-card-name { font-size: 13px; letter-spacing: 0.08em; }
+    .ds-month-card { aspect-ratio: 3 / 3.9; }
 }
 
 .filter-label-dark {
