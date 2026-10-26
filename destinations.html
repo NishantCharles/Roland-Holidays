@@ -733,18 +733,10 @@
                     </div>
                 </div>
 
-                <!-- Pagination -->
-                <div class="col-12 mt-5">
-                    <ul class="ds-pagination d-flex justify-content-center align-items-center gap-2 list-unstyled mb-0">
-                        <li><a href="#" class="page-btn prev-btn"><i class="fas fa-chevron-left"></i></a></li>
-                        <li><a href="#" class="page-btn active">1</a></li>
-                        <li><a href="#" class="page-btn">2</a></li>
-                        <li><a href="#" class="page-btn">3</a></li>
-                        <li><span class="page-dots">...</span></li>
-                        <li><a href="#" class="page-btn">8</a></li>
-                        <li><a href="#" class="page-btn next-btn"><i class="fas fa-chevron-right"></i></a></li>
-                    </ul>
-                </div>
+                <!-- Pagination (built by renderPagination; hidden when results fit on one page) -->
+                <nav class="col-12 mt-5" id="destPagination" aria-label="Destinations pages" hidden>
+                    <ul class="ds-pagination d-flex flex-wrap justify-content-center align-items-center gap-2 list-unstyled mb-0" id="destPaginationList"></ul>
+                </nav>
 
                 <!-- No results message -->
                 <div class="col-12 text-center py-5" id="noResults" style="display:none !important;">
@@ -888,6 +880,73 @@
         moveGlider('seasonTrack', 'seasonGlider', 'season-pill');
     }
 
+    // ── Pagination ──
+    var CARDS_PER_PAGE = 12;
+    var currentPage = 1;
+
+    function showPage(cards, page) {
+        var totalPages = Math.max(1, Math.ceil(cards.length / CARDS_PER_PAGE));
+        currentPage = Math.min(Math.max(1, page), totalPages);
+        var start = (currentPage - 1) * CARDS_PER_PAGE;
+        cards.forEach(function (card, i) {
+            card.style.display = (i >= start && i < start + CARDS_PER_PAGE) ? 'block' : 'none';
+        });
+        renderPagination(cards, totalPages);
+    }
+
+    function renderPagination(cards, totalPages) {
+        var nav = document.getElementById('destPagination');
+        var list = document.getElementById('destPaginationList');
+        if (!nav || !list) return;
+        list.innerHTML = '';
+        nav.hidden = totalPages <= 1;
+        if (nav.hidden) return;
+
+        function addButton(label, page, extraClass, ariaLabel) {
+            var li = document.createElement('li');
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'page-btn' + (extraClass ? ' ' + extraClass : '');
+            btn.innerHTML = label;
+            if (ariaLabel) btn.setAttribute('aria-label', ariaLabel);
+            if (page === currentPage && !extraClass) {
+                btn.classList.add('active');
+                btn.setAttribute('aria-current', 'page');
+            }
+            if (page < 1 || page > totalPages) {
+                btn.disabled = true;
+                btn.style.opacity = '0.4';
+                btn.style.cursor = 'default';
+            } else {
+                btn.addEventListener('click', function () {
+                    if (page === currentPage) return;
+                    showPage(cards, page);
+                    var grid = document.getElementById('destGrid');
+                    if (grid) grid.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+            li.appendChild(btn);
+            list.appendChild(li);
+        }
+
+        function addDots() {
+            var li = document.createElement('li');
+            li.innerHTML = '<span class="page-dots" aria-hidden="true">...</span>';
+            list.appendChild(li);
+        }
+
+        addButton('<i class="fas fa-chevron-left"></i>', currentPage - 1, 'prev-btn', 'Previous page');
+        var last = 0;
+        for (var p = 1; p <= totalPages; p++) {
+            if (p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1) {
+                if (p - last > 1) addDots();
+                addButton(String(p), p, '', 'Page ' + p);
+                last = p;
+            }
+        }
+        addButton('<i class="fas fa-chevron-right"></i>', currentPage + 1, 'next-btn', 'Next page');
+    }
+
     // ── Region & Season Filter logic ──
     document.querySelectorAll('.region-pill').forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -983,7 +1042,7 @@
         var region = regionBtn ? (regionBtn.dataset.region || 'all') : 'all';
         var season = seasonBtn ? (seasonBtn.dataset.season || 'all') : 'all';
         var searchQuery = searchInput ? searchInput.value.trim().toLowerCase() : '';
-        var visibleCount = 0;
+        var matches = [];
 
         document.querySelectorAll('.dest-card-wrap').forEach(function (card) {
             var cardRegion = card.dataset.region || '';
@@ -995,16 +1054,18 @@
             var searchMatch = (searchQuery === '' || cardText.includes(searchQuery));
 
             if (regionMatch && seasonMatch && searchMatch) {
-                card.style.display = 'block';
-                visibleCount++;
+                matches.push(card);
             } else {
                 card.style.display = 'none';
             }
         });
 
+        // Any filter or search change starts again from page 1
+        showPage(matches, 1);
+
         var noResults = document.getElementById('noResults');
         if (noResults) {
-            noResults.style.setProperty('display', visibleCount === 0 ? 'block' : 'none', 'important');
+            noResults.style.setProperty('display', matches.length === 0 ? 'block' : 'none', 'important');
         }
     }
     </script>
